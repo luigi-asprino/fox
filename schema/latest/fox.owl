@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/fox/ontology/"
-     xml:base="https://w3id.org/fox/ontology/"
-     xmlns:fox="https://w3id.org/fox/ontology/"
+<rdf:RDF xmlns="https://w3id.org/fox/"
+     xml:base="https://w3id.org/fox/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:fox="https://w3id.org/fox/ontology/">
     <owl:Ontology rdf:about="https://w3id.org/fox">
         <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
@@ -32,7 +32,7 @@
         <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#involvesAgent"/>
         <rdfs:domain rdf:resource="https://w3id.org/fox/ontology/TypingAssertion"/>
         <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
-        <rdfs:comment xml:lang="en">It associates a typing assertion with the who made the assertion.</rdfs:comment>
+        <rdfs:comment xml:lang="en">It associates a typing assertion with the Agent who made the assertion.</rdfs:comment>
         <rdfs:label xml:lang="en">asserted by</rdfs:label>
     </owl:ObjectProperty>
     
@@ -121,7 +121,7 @@
                 <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">The act of an Agent of asserting the type of an entity.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The act of an agent of asserting the type of an entity.</rdfs:comment>
         <rdfs:label xml:lang="en">Typing Assertion</rdfs:label>
     </owl:Class>
     
@@ -137,7 +137,7 @@
                 <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">The act of an Agent of asserting the type of an entity with a certain confidence.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The act of an agent of asserting the type of an entity with a certain confidence. If the agent is a group of people the weight might represent the agreement among the people in doing this assertion.</rdfs:comment>
         <rdfs:label xml:lang="en">Weighted Typing Assertion</rdfs:label>
     </owl:Class>
 </rdf:RDF>
