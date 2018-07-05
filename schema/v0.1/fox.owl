@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/fox/"
-     xml:base="https://w3id.org/fox/"
+<rdf:RDF xmlns="https://w3id.org/fox/ontology/"
+     xml:base="https://w3id.org/fox/ontology/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:fox="https://w3id.org/fox/ontology/">
-    <owl:Ontology rdf:about="https://w3id.org/fox">
+    <owl:Ontology rdf:about="https://w3id.org/fox/ontology">
         <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
         <rdfs:label>Empirical Foundational Ontology of Common Sense</rdfs:label>
@@ -86,7 +86,6 @@
         <rdfs:domain rdf:resource="https://w3id.org/fox/ontology/WeightedTypingAssertion"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment xml:lang="en">It encodes the weight of a weighted typing assertion.</rdfs:comment>
-        <rdfs:isDefinedBy>https://w3id.org/fox/ontology</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">weight</rdfs:label>
     </owl:DatatypeProperty>
     
