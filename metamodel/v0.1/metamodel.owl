@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/fox/ontology/"
-     xml:base="https://w3id.org/fox/ontology/"
+<rdf:RDF xmlns="https://w3id.org/fox/metamodel/"
+     xml:base="https://w3id.org/fox/metamodel/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:fox="https://w3id.org/fox/ontology/">
-    <owl:Ontology rdf:about="https://w3id.org/fox/ontology">
+     xmlns:fox-meta="https://w3id.org/fox/metamodel/">
+    <owl:Ontology rdf:about="https://w3id.org/fox/metamodel">
         <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/>
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
-        <rdfs:label>Empirical Foundational Ontology of Common Sense</rdfs:label>
+        <rdfs:label>FOX Metamodel</rdfs:label>
     </owl:Ontology>
     
 
@@ -26,42 +26,42 @@
     
 
 
-    <!-- https://w3id.org/fox/ontology/assertedBy -->
+    <!-- https://w3id.org/fox/metamodel/assertedBy -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/fox/ontology/assertedBy">
+    <owl:ObjectProperty rdf:about="https://w3id.org/fox/metamodel/assertedBy">
         <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#involvesAgent"/>
-        <rdfs:domain rdf:resource="https://w3id.org/fox/ontology/TypingAssertion"/>
+        <rdfs:domain rdf:resource="https://w3id.org/fox/metamodel/TypingAssertion"/>
         <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
         <rdfs:comment xml:lang="en">It associates a typing assertion with the Agent who made the assertion.</rdfs:comment>
-        <rdfs:isDefinedBy>https://w3id.org/fox/ontology</rdfs:isDefinedBy>
+        <rdfs:isDefinedBy>https://w3id.org/fox/metamodel</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">asserted by</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/fox/ontology/hasAssertedEntity -->
+    <!-- https://w3id.org/fox/metamodel/hasAssertedEntity -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/fox/ontology/hasAssertedEntity">
+    <owl:ObjectProperty rdf:about="https://w3id.org/fox/metamodel/hasAssertedEntity">
         <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="https://w3id.org/fox/ontology/TypingAssertion"/>
+        <rdfs:domain rdf:resource="https://w3id.org/fox/metamodel/TypingAssertion"/>
         <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Object"/>
         <rdfs:comment xml:lang="en">The entity which is the objective of a typing assertion.</rdfs:comment>
-        <rdfs:isDefinedBy>https://w3id.org/fox/ontology</rdfs:isDefinedBy>
+        <rdfs:isDefinedBy>https://w3id.org/fox/metamodel</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">has asserted entity</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/fox/ontology/hasType -->
+    <!-- https://w3id.org/fox/metamodel/hasType -->
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/fox/ontology/hasType">
+    <owl:ObjectProperty rdf:about="https://w3id.org/fox/metamodel/hasType">
         <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="https://w3id.org/fox/ontology/TypingAssertion"/>
+        <rdfs:domain rdf:resource="https://w3id.org/fox/metamodel/TypingAssertion"/>
         <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
         <rdfs:comment xml:lang="en">The type to which an entity involved in a typing assertion belongs to.</rdfs:comment>
-        <rdfs:isDefinedBy>https://w3id.org/fox/ontology</rdfs:isDefinedBy>
+        <rdfs:isDefinedBy>https://w3id.org/fox/metamodel</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">has Type</rdfs:label>
     </owl:ObjectProperty>
     
@@ -78,12 +78,12 @@
     
 
 
-    <!-- https://w3id.org/fox/ontology/weight -->
+    <!-- https://w3id.org/fox/metamodel/weight -->
 
-    <owl:DatatypeProperty rdf:about="https://w3id.org/fox/ontology/weight">
+    <owl:DatatypeProperty rdf:about="https://w3id.org/fox/metamodel/weight">
         <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasDataValue"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="https://w3id.org/fox/ontology/WeightedTypingAssertion"/>
+        <rdfs:domain rdf:resource="https://w3id.org/fox/metamodel/WeightedTypingAssertion"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
         <rdfs:comment xml:lang="en">It encodes the weight of a weighted typing assertion.</rdfs:comment>
         <rdfs:label xml:lang="en">weight</rdfs:label>
@@ -102,47 +102,47 @@
     
 
 
-    <!-- https://w3id.org/fox/ontology/TypingAssertion -->
+    <!-- https://w3id.org/fox/metamodel/TypingAssertion -->
 
-    <owl:Class rdf:about="https://w3id.org/fox/ontology/TypingAssertion">
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/TypingAssertion">
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/fox/ontology/assertedBy"/>
+                <owl:onProperty rdf:resource="https://w3id.org/fox/metamodel/assertedBy"/>
                 <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/fox/ontology/hasAssertedEntity"/>
+                <owl:onProperty rdf:resource="https://w3id.org/fox/metamodel/hasAssertedEntity"/>
                 <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Entity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/fox/ontology/hasType"/>
+                <owl:onProperty rdf:resource="https://w3id.org/fox/metamodel/hasType"/>
                 <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">The act of an agent of asserting the type of an entity.</rdfs:comment>
-        <rdfs:isDefinedBy>https://w3id.org/fox/ontology</rdfs:isDefinedBy>
+        <rdfs:isDefinedBy>https://w3id.org/fox/metamodel</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Typing Assertion</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- https://w3id.org/fox/ontology/WeightedTypingAssertion -->
+    <!-- https://w3id.org/fox/metamodel/WeightedTypingAssertion -->
 
-    <owl:Class rdf:about="https://w3id.org/fox/ontology/WeightedTypingAssertion">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/ontology/TypingAssertion"/>
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/WeightedTypingAssertion">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/TypingAssertion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/fox/ontology/weight"/>
+                <owl:onProperty rdf:resource="https://w3id.org/fox/metamodel/weight"/>
                 <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">The act of an agent of asserting the type of an entity with a certain confidence. If the agent is a group of people the weight might represent the agreement among the people in doing this assertion.</rdfs:comment>
-        <rdfs:isDefinedBy>https://w3id.org/fox/ontology</rdfs:isDefinedBy>
+        <rdfs:isDefinedBy>https://w3id.org/fox/metamodel</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Weighted Typing Assertion</rdfs:label>
     </owl:Class>
 </rdf:RDF>
