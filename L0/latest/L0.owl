@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/fox/L0#"
-     xml:base="https://w3id.org/fox/L0"
+<rdf:RDF xmlns="https://w3id.org/fox/L0/"
+     xml:base="https://w3id.org/fox/L0/"
      xmlns:fox-L0="https://w3id.org/fox/L0/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -56,9 +56,9 @@
     <!-- https://w3id.org/fox/L0/MaterialEntity -->
 
     <owl:Class rdf:about="https://w3id.org/fox/L0/MaterialEntity">
+        <rdfs:comment xml:lang="en">Any entity having a physical body.</rdfs:comment>
         <rdfs:isDefinedBy>https://w3id.org/fox/L0</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Material Entity</rdfs:label>
-        <owl:comment xml:lang="en">Any entity having a physical body.</owl:comment>
     </owl:Class>
 </rdf:RDF>
 
