@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/fox/L0/"
-     xml:base="https://w3id.org/fox/L0/"
+<rdf:RDF xmlns="https://w3id.org/fox/L0#"
+     xml:base="https://w3id.org/fox/L0"
+     xmlns:fox-L0="https://w3id.org/fox/L0/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -45,7 +46,8 @@
     <!-- https://w3id.org/fox/L0/ImmaterialEntity -->
 
     <owl:Class rdf:about="https://w3id.org/fox/L0/ImmaterialEntity">
-        <rdfs:comment xml:lang="en">Any entity that does not have a body.</rdfs:comment>
+        <rdfs:comment xml:lang="en">Any entity that does not have any body.</rdfs:comment>
+        <rdfs:isDefinedBy>https://w3id.org/fox/L0</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">Immaterial Entity</rdfs:label>
     </owl:Class>
     
@@ -54,7 +56,8 @@
     <!-- https://w3id.org/fox/L0/MaterialEntity -->
 
     <owl:Class rdf:about="https://w3id.org/fox/L0/MaterialEntity">
-        <rdfs:label xml:lang="en">Material Object</rdfs:label>
+        <rdfs:isDefinedBy>https://w3id.org/fox/L0</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Material Entity</rdfs:label>
         <owl:comment xml:lang="en">Any entity having a physical body.</owl:comment>
     </owl:Class>
 </rdf:RDF>
