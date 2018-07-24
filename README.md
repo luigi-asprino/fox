@@ -1,7 +1,6 @@
 # Empirical Foundational Ontology of Common Sense
 
-The repository is the workspace of the [FOX project](https://w3id.org/fox).
-The contains the metamodel of the Empirical Foundational Ontology of Common Sense (abbreviated as "FOX") and parts of the ontology itself.
+The repository is the workspace of the [FOX project](https://w3id.org/fox). The repository contains the metamodel of the Empirical Foundational Ontology of Common Sense (abbreviated as "FOX") and parts of the ontology itself.
 The documentation of these ontologies is available at the following links:
 
 * [FOX Metamodel](https://w3id.org/fox/metamodel): the metamodel of the Empirical Foundational Ontology of Common Sense.
