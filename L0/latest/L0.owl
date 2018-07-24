@@ -9,7 +9,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="https://w3id.org/fox/L0">
         <owl:versionInfo>v0.1</owl:versionInfo>
-        <owl:comment xml:lang="en">This ontology does not aim at creating another top-level ontology. This ontology has the objective of defining some concepts supersuming classes and properties defined in foundational ontologies.</owl:comment>
+        <rdfs:comment xml:lang="en">This ontology does not aim at creating another top-level ontology. This ontology has the objective of defining some concepts supersuming classes and properties defined in foundational ontologies.</rdfs:comment>
         <rdfs:label xml:lang="en">FOX Level 0</rdfs:label>
     </owl:Ontology>
     
