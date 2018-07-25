@@ -39,6 +39,18 @@
     
 
 
+    <!-- https://w3id.org/fox/metamodel/definesOntologyEntity -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/fox/metamodel/definesOntologyEntity">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+        <owl:inverseOf rdf:resource="https://w3id.org/fox/metamodel/isDefinedIn"/>
+        <rdfs:domain rdf:resource="https://w3id.org/fox/metamodel/Ontology"/>
+        <rdfs:range rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <rdfs:label xml:lang="en">defines ontology entity</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://w3id.org/fox/metamodel/hasAssertedEntity -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/fox/metamodel/hasAssertedEntity">
@@ -63,6 +75,17 @@
         <rdfs:comment xml:lang="en">The type to which an entity involved in a typing assertion belongs to.</rdfs:comment>
         <rdfs:isDefinedBy>https://w3id.org/fox/metamodel</rdfs:isDefinedBy>
         <rdfs:label xml:lang="en">has Type</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/isDefinedIn -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/fox/metamodel/isDefinedIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+        <rdfs:domain rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <rdfs:range rdf:resource="https://w3id.org/fox/metamodel/Ontology"/>
+        <rdfs:label xml:lang="en">is defined in</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -99,6 +122,130 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/AnnotationProperty -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/AnnotationProperty">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyProperty"/>
+        <rdfs:comment xml:lang="en">An annotation property defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Annotation Property</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/DataProperty -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/DataProperty">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyProperty"/>
+        <rdfs:comment xml:lang="en">A data property defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Data Property</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/FoundationalOntology -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/FoundationalOntology">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/Ontology"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/fox/metamodel/definesOntologyEntity"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/fox/metamodel/FoundationalOntologyEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">An ontology that defines very general concepts that are common across all domains.</rdfs:comment>
+        <rdfs:label xml:lang="en">Foundational Ontology</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/FoundationalOntologyEntity -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/FoundationalOntologyEntity">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <rdfs:comment xml:lang="en">An ontology entity defined by a foundational ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Foundational Ontology Entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/Instance -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/Instance">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/fox/metamodel/OntologyClass"/>
+        <rdfs:comment xml:lang="en">Entities that cannot have instances. Also called &quot;particulars&quot; (cf. http://www.loa.istc.cnr.it/old/Papers/D18.pdf)</rdfs:comment>
+        <rdfs:label xml:lang="en">Instance</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/ObjectProperty -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/ObjectProperty">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyProperty"/>
+        <rdfs:comment xml:lang="en">An object property defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Object Property</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/Ontology -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/Ontology">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FormalEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/fox/metamodel/definesOntologyEntity"/>
+                <owl:someValuesFrom rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A formal conceptualization of a domain of interest.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ontology</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/OntologyClass -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/OntologyClass">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <rdfs:comment xml:lang="en">A class defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ontology Class</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/OntologyDatatype -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/OntologyDatatype">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <rdfs:comment xml:lang="en">A datatype defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ontologt Datatype</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/OntologyEntity -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/OntologyEntity">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FormalEntity"/>
+        <rdfs:comment xml:lang="en">A formal entity defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ontology Entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/fox/metamodel/OntologyProperty -->
+
+    <owl:Class rdf:about="https://w3id.org/fox/metamodel/OntologyProperty">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/fox/metamodel/OntologyEntity"/>
+        <rdfs:comment xml:lang="en">A property defined by an ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ontology Property</rdfs:label>
+    </owl:Class>
     
 
 
