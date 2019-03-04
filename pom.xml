@@ -75,5 +75,14 @@
 			<version>3.7.0</version>
 			<classifier>models</classifier>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.jena/apache-jena-libs -->
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena-libs</artifactId>
+			<version>3.10.0</version>
+			<type>pom</type>
+		</dependency>
+
 	</dependencies>
 </project>
