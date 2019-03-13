@@ -32,11 +32,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>it.cnr.istc.stlab</groupId>
-			<artifactId>lgu.commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 
 		<!-- Commons configuration -->
 		<dependency>
