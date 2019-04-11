@@ -18,13 +18,24 @@ public class Fox {
 	public static void main(String[] args) {
 		try {
 			Configurations configs = new Configurations();
-			Configuration config = configs.properties(args[0]);
+			Configuration config;
+			if (args.length > 1) {
+				config = configs.properties(args[0]);
+			} else {
+				config = configs.properties("config.properties");
+			}
 
 			SENECA seneca = SENECA.getInstance(config.getString("SENECA_classes"), config.getString("SENECA_PhysicalObjects"));
 			Tipalo tipalo = Tipalo.getInstance(config.getString("Tipalo_classes"), config.getString("Tipalo_PhysicalObjects"));
 
-			logger.info("{}", seneca.isPhysicalObject("http://dbpedia.org/resource/Xanthophyll"));
-			logger.info("{}", tipalo.isPhysicalObject("http://dbpedia.org/resource/Xanthophyll"));
+			
+			logger.info("Is dbr:Xanthophyll a Class according to SENECA method? {}", seneca.isClass("http://dbpedia.org/resource/Xanthophyll"));
+			logger.info("Is dbr:Xanthophyll a Class according to Tipalo method?  {}", tipalo.isClass("http://dbpedia.org/resource/Xanthophyll"));
+			
+			logger.info("Is dbr:Xanthophyll a Physical Object according to SENECA method? {}", seneca.isPhysicalObject("http://dbpedia.org/resource/Xanthophyll"));
+			logger.info("Is dbr:Xanthophyll a Physical Object according to Tipalo method?  {}", tipalo.isPhysicalObject("http://dbpedia.org/resource/Xanthophyll"));
+			
+
 
 		} catch (ConfigurationException e) {
 			e.printStackTrace();
