@@ -6,7 +6,9 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Attribute;
+import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.SparseInstance;
 import weka.filters.unsupervised.attribute.Remove;
 
 public class WekaExperiments {
@@ -14,11 +16,11 @@ public class WekaExperiments {
 	public static void main(String[] args) {
 
 		try {
-			
-			// Load instances 
+
+			// Load instances
 			// Note: pass the filepath of the XRFF as main parameter
 			Instances instances = WekaUtils.loadXRFFInstances(args[0]);
-			
+
 			// Create a new classifier
 			SMO svm = new SMO();
 
@@ -29,6 +31,11 @@ public class WekaExperiments {
 			Remove rm = new Remove();
 			rm.setAttributeIndicesArray(new int[] { idAtt.index() });
 			fc.setFilter(rm);
+			
+			
+			
+			// SparseInstance si = new SparseInstance(instances.numAttributes());
+			// si.setValue(instances.attribute("http://xmlns.com/foaf/0.1/givenName"), 200);
 
 			// 10 fold cross-validation of SVM on dataset input dataset
 			Evaluation eval = new Evaluation(instances);
