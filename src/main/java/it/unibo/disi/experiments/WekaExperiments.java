@@ -34,6 +34,7 @@ public class WekaExperiments {
 			
 			
 			
+			
 			// SparseInstance si = new SparseInstance(instances.numAttributes());
 			// si.setValue(instances.attribute("http://xmlns.com/foaf/0.1/givenName"), 200);
 
