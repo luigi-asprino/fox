@@ -66,8 +66,10 @@ public class Test {
 				// Utils.getNumberOfURITokens(TOKEN_PREFIX_ATTRIBUTE+uriTokens)
 
 				double classe = svm.classifyInstance(si);
-
+				
 				// uriEntity classe
+				
+				
 			}
 
 		} catch (Exception e) {
