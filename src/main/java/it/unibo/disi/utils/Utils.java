@@ -110,6 +110,4 @@ public class Utils {
 		return c;
 	}
 
-	
-
 }
