@@ -1,7 +1,8 @@
-package it.unibo.disi.experiments;
+package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.util.Random;
 
+import it.unibo.disi.fox.experiments.WekaUtils;
 import weka.classifiers.Evaluation;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
@@ -9,7 +10,7 @@ import weka.core.Attribute;
 import weka.core.Instances;
 import weka.filters.unsupervised.attribute.Remove;
 
-public class WekaExperiments {
+public class WekaExperimentsTest {
 
 	public static void main(String[] args) {
 

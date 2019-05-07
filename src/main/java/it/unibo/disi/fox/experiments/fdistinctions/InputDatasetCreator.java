@@ -1,4 +1,4 @@
-package it.unibo.disi.experiments;
+package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.io.File;
 import java.io.FileNotFoundException;

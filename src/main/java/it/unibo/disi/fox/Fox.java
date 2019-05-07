@@ -1,4 +1,4 @@
-package it.unibo.disi;
+package it.unibo.disi.fox;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.unibo.disi.features.SENECA;
-import it.unibo.disi.features.Tipalo;
+import it.unibo.disi.fox.services.SENECA;
+import it.unibo.disi.fox.services.Tipalo;
 
 public class Fox {
 
