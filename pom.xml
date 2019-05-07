@@ -24,6 +24,63 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<configuration>
+					<shadedArtifactAttached>false</shadedArtifactAttached>
+					<finalName>dataset-creator-${project.version}</finalName>
+					<outputDirectory>bin</outputDirectory>
+					<transformers>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							<mainClass>it.unibo.disi.fox.experiments.fdistinctions.InputDatasetCreator</mainClass>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer" />
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+							<addHeader>false</addHeader>
+						</transformer>
+					</transformers>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>META-INF/*.SF</exclude>
+								<exclude>META-INF/*.DSA</exclude>
+								<exclude>META-INF/*.RSA</exclude>
+							</excludes>
+						</filter>
+					</filters>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptor>src/assembly/bin.xml</descriptor>
+					<outputDirectory>bin</outputDirectory>
+					<finalName>dataset-creator-${project.version}</finalName>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 
 	</build>
