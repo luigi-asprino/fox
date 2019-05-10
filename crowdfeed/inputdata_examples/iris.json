@@ -1,10 +1,10 @@
 [
     {
         "features": {
-            "sepallength": 5.6,
-            "sepalwidth": 3,
-            "petalwidth": 1.3,
-            "petallength": 4.1
+            "sepallength": [5.6],
+            "sepalwidth": [3],
+            "petalwidth": [1.3],
+            "petallength": [4.1]
         },
         "entityURI": "88",
         "annotations": [{
@@ -24,10 +24,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.3,
-            "petallength": 4
+            "sepallength": [5.5],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.3],
+            "petallength": [4]
         },
         "entityURI": "89",
         "annotations": [{
@@ -47,10 +47,10 @@
     },
     {
         "features": {
-            "sepallength": 6.5,
-            "sepalwidth": 3.2,
-            "petalwidth": 2,
-            "petallength": 5.1
+            "sepallength": [6.5],
+            "sepalwidth": [3.2],
+            "petalwidth": [2],
+            "petallength": [5.1]
         },
         "entityURI": "110",
         "annotations": [{
@@ -70,10 +70,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.9,
-            "petallength": 5.3
+            "sepallength": [6.4],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.9],
+            "petallength": [5.3]
         },
         "entityURI": "111",
         "annotations": [{
@@ -93,10 +93,10 @@
     },
     {
         "features": {
-            "sepallength": 6.8,
-            "sepalwidth": 3,
-            "petalwidth": 2.1,
-            "petallength": 5.5
+            "sepallength": [6.8],
+            "sepalwidth": [3],
+            "petalwidth": [2.1],
+            "petallength": [5.5]
         },
         "entityURI": "112",
         "annotations": [{
@@ -116,10 +116,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 2.5,
-            "petalwidth": 2,
-            "petallength": 5
+            "sepallength": [5.7],
+            "sepalwidth": [2.5],
+            "petalwidth": [2],
+            "petallength": [5]
         },
         "entityURI": "113",
         "annotations": [{
@@ -139,10 +139,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 2.8,
-            "petalwidth": 2.4,
-            "petallength": 5.1
+            "sepallength": [5.8],
+            "sepalwidth": [2.8],
+            "petalwidth": [2.4],
+            "petallength": [5.1]
         },
         "entityURI": "114",
         "annotations": [{
@@ -162,10 +162,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 3.2,
-            "petalwidth": 2.3,
-            "petallength": 5.3
+            "sepallength": [6.4],
+            "sepalwidth": [3.2],
+            "petalwidth": [2.3],
+            "petallength": [5.3]
         },
         "entityURI": "115",
         "annotations": [{
@@ -185,10 +185,10 @@
     },
     {
         "features": {
-            "sepallength": 6.5,
-            "sepalwidth": 3,
-            "petalwidth": 1.8,
-            "petallength": 5.5
+            "sepallength": [6.5],
+            "sepalwidth": [3],
+            "petalwidth": [1.8],
+            "petallength": [5.5]
         },
         "entityURI": "116",
         "annotations": [{
@@ -208,10 +208,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 2.6,
-            "petalwidth": 1.2,
-            "petallength": 4.4
+            "sepallength": [5.5],
+            "sepalwidth": [2.6],
+            "petalwidth": [1.2],
+            "petallength": [4.4]
         },
         "entityURI": "90",
         "annotations": [{
@@ -231,10 +231,10 @@
     },
     {
         "features": {
-            "sepallength": 7.7,
-            "sepalwidth": 3.8,
-            "petalwidth": 2.2,
-            "petallength": 6.7
+            "sepallength": [7.7],
+            "sepalwidth": [3.8],
+            "petalwidth": [2.2],
+            "petallength": [6.7]
         },
         "entityURI": "117",
         "annotations": [{
@@ -254,10 +254,10 @@
     },
     {
         "features": {
-            "sepallength": 6.1,
-            "sepalwidth": 3,
-            "petalwidth": 1.4,
-            "petallength": 4.6
+            "sepallength": [6.1],
+            "sepalwidth": [3],
+            "petalwidth": [1.4],
+            "petallength": [4.6]
         },
         "entityURI": "91",
         "annotations": [{
@@ -277,10 +277,10 @@
     },
     {
         "features": {
-            "sepallength": 7.7,
-            "sepalwidth": 2.6,
-            "petalwidth": 2.3,
-            "petallength": 6.9
+            "sepallength": [7.7],
+            "sepalwidth": [2.6],
+            "petalwidth": [2.3],
+            "petallength": [6.9]
         },
         "entityURI": "118",
         "annotations": [{
@@ -300,10 +300,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 2.6,
-            "petalwidth": 1.2,
-            "petallength": 4
+            "sepallength": [5.8],
+            "sepalwidth": [2.6],
+            "petalwidth": [1.2],
+            "petallength": [4]
         },
         "entityURI": "92",
         "annotations": [{
@@ -323,10 +323,10 @@
     },
     {
         "features": {
-            "sepallength": 6,
-            "sepalwidth": 2.2,
-            "petalwidth": 1.5,
-            "petallength": 5
+            "sepallength": [6],
+            "sepalwidth": [2.2],
+            "petalwidth": [1.5],
+            "petallength": [5]
         },
         "entityURI": "119",
         "annotations": [{
@@ -346,10 +346,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 2.3,
-            "petalwidth": 1,
-            "petallength": 3.3
+            "sepallength": [5],
+            "sepalwidth": [2.3],
+            "petalwidth": [1],
+            "petallength": [3.3]
         },
         "entityURI": "93",
         "annotations": [{
@@ -369,10 +369,10 @@
     },
     {
         "features": {
-            "sepallength": 5.6,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.3,
-            "petallength": 4.2
+            "sepallength": [5.6],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.3],
+            "petallength": [4.2]
         },
         "entityURI": "94",
         "annotations": [{
@@ -392,10 +392,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 3,
-            "petalwidth": 1.2,
-            "petallength": 4.2
+            "sepallength": [5.7],
+            "sepalwidth": [3],
+            "petalwidth": [1.2],
+            "petallength": [4.2]
         },
         "entityURI": "95",
         "annotations": [{
@@ -415,10 +415,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.3,
-            "petallength": 4.2
+            "sepallength": [5.7],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.3],
+            "petallength": [4.2]
         },
         "entityURI": "96",
         "annotations": [{
@@ -438,10 +438,10 @@
     },
     {
         "features": {
-            "sepallength": 6.2,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.3,
-            "petallength": 4.3
+            "sepallength": [6.2],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.3],
+            "petallength": [4.3]
         },
         "entityURI": "97",
         "annotations": [{
@@ -461,10 +461,10 @@
     },
     {
         "features": {
-            "sepallength": 5.4,
-            "sepalwidth": 3.7,
-            "petalwidth": 0.2,
-            "petallength": 1.5
+            "sepallength": [5.4],
+            "sepalwidth": [3.7],
+            "petalwidth": [0.2],
+            "petallength": [1.5]
         },
         "entityURI": "10",
         "annotations": [{
@@ -484,10 +484,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.1,
-            "petallength": 3
+            "sepallength": [5.1],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.1],
+            "petallength": [3]
         },
         "entityURI": "98",
         "annotations": [{
@@ -507,10 +507,10 @@
     },
     {
         "features": {
-            "sepallength": 4.8,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.2,
-            "petallength": 1.6
+            "sepallength": [4.8],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.2],
+            "petallength": [1.6]
         },
         "entityURI": "11",
         "annotations": [{
@@ -530,10 +530,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.3,
-            "petallength": 4.1
+            "sepallength": [5.7],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.3],
+            "petallength": [4.1]
         },
         "entityURI": "99",
         "annotations": [{
@@ -553,10 +553,10 @@
     },
     {
         "features": {
-            "sepallength": 4.8,
-            "sepalwidth": 3,
-            "petalwidth": 0.1,
-            "petallength": 1.4
+            "sepallength": [4.8],
+            "sepalwidth": [3],
+            "petalwidth": [0.1],
+            "petallength": [1.4]
         },
         "entityURI": "12",
         "annotations": [{
@@ -576,10 +576,10 @@
     },
     {
         "features": {
-            "sepallength": 4.3,
-            "sepalwidth": 3,
-            "petalwidth": 0.1,
-            "petallength": 1.1
+            "sepallength": [4.3],
+            "sepalwidth": [3],
+            "petalwidth": [0.1],
+            "petallength": [1.1]
         },
         "entityURI": "13",
         "annotations": [{
@@ -599,10 +599,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 4,
-            "petalwidth": 0.2,
-            "petallength": 1.2
+            "sepallength": [5.8],
+            "sepalwidth": [4],
+            "petalwidth": [0.2],
+            "petallength": [1.2]
         },
         "entityURI": "14",
         "annotations": [{
@@ -622,10 +622,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 4.4,
-            "petalwidth": 0.4,
-            "petallength": 1.5
+            "sepallength": [5.7],
+            "sepalwidth": [4.4],
+            "petalwidth": [0.4],
+            "petallength": [1.5]
         },
         "entityURI": "15",
         "annotations": [{
@@ -645,10 +645,10 @@
     },
     {
         "features": {
-            "sepallength": 5.4,
-            "sepalwidth": 3.9,
-            "petalwidth": 0.4,
-            "petallength": 1.3
+            "sepallength": [5.4],
+            "sepalwidth": [3.9],
+            "petalwidth": [0.4],
+            "petallength": [1.3]
         },
         "entityURI": "16",
         "annotations": [{
@@ -668,10 +668,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.5,
-            "petalwidth": 0.3,
-            "petallength": 1.4
+            "sepallength": [5.1],
+            "sepalwidth": [3.5],
+            "petalwidth": [0.3],
+            "petallength": [1.4]
         },
         "entityURI": "17",
         "annotations": [{
@@ -691,10 +691,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 3.8,
-            "petalwidth": 0.3,
-            "petallength": 1.7
+            "sepallength": [5.7],
+            "sepalwidth": [3.8],
+            "petalwidth": [0.3],
+            "petallength": [1.7]
         },
         "entityURI": "18",
         "annotations": [{
@@ -714,10 +714,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.8,
-            "petalwidth": 0.3,
-            "petallength": 1.5
+            "sepallength": [5.1],
+            "sepalwidth": [3.8],
+            "petalwidth": [0.3],
+            "petallength": [1.5]
         },
         "entityURI": "19",
         "annotations": [{
@@ -737,10 +737,10 @@
     },
     {
         "features": {
-            "sepallength": 6.9,
-            "sepalwidth": 3.2,
-            "petalwidth": 2.3,
-            "petallength": 5.7
+            "sepallength": [6.9],
+            "sepalwidth": [3.2],
+            "petalwidth": [2.3],
+            "petallength": [5.7]
         },
         "entityURI": "120",
         "annotations": [{
@@ -760,10 +760,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.5,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [5.1],
+            "sepalwidth": [3.5],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "0",
         "annotations": [{
@@ -783,10 +783,10 @@
     },
     {
         "features": {
-            "sepallength": 5.6,
-            "sepalwidth": 2.8,
-            "petalwidth": 2,
-            "petallength": 4.9
+            "sepallength": [5.6],
+            "sepalwidth": [2.8],
+            "petalwidth": [2],
+            "petallength": [4.9]
         },
         "entityURI": "121",
         "annotations": [{
@@ -806,10 +806,10 @@
     },
     {
         "features": {
-            "sepallength": 4.9,
-            "sepalwidth": 3,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [4.9],
+            "sepalwidth": [3],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "1",
         "annotations": [{
@@ -829,10 +829,10 @@
     },
     {
         "features": {
-            "sepallength": 7.7,
-            "sepalwidth": 2.8,
-            "petalwidth": 2,
-            "petallength": 6.7
+            "sepallength": [7.7],
+            "sepalwidth": [2.8],
+            "petalwidth": [2],
+            "petallength": [6.7]
         },
         "entityURI": "122",
         "annotations": [{
@@ -852,10 +852,10 @@
     },
     {
         "features": {
-            "sepallength": 4.7,
-            "sepalwidth": 3.2,
-            "petalwidth": 0.2,
-            "petallength": 1.3
+            "sepallength": [4.7],
+            "sepalwidth": [3.2],
+            "petalwidth": [0.2],
+            "petallength": [1.3]
         },
         "entityURI": "2",
         "annotations": [{
@@ -875,10 +875,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.8,
-            "petallength": 4.9
+            "sepallength": [6.3],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.8],
+            "petallength": [4.9]
         },
         "entityURI": "123",
         "annotations": [{
@@ -898,10 +898,10 @@
     },
     {
         "features": {
-            "sepallength": 4.6,
-            "sepalwidth": 3.1,
-            "petalwidth": 0.2,
-            "petallength": 1.5
+            "sepallength": [4.6],
+            "sepalwidth": [3.1],
+            "petalwidth": [0.2],
+            "petallength": [1.5]
         },
         "entityURI": "3",
         "annotations": [{
@@ -921,10 +921,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3.3,
-            "petalwidth": 2.1,
-            "petallength": 5.7
+            "sepallength": [6.7],
+            "sepalwidth": [3.3],
+            "petalwidth": [2.1],
+            "petallength": [5.7]
         },
         "entityURI": "124",
         "annotations": [{
@@ -944,10 +944,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.6,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [5],
+            "sepalwidth": [3.6],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "4",
         "annotations": [{
@@ -967,10 +967,10 @@
     },
     {
         "features": {
-            "sepallength": 7.2,
-            "sepalwidth": 3.2,
-            "petalwidth": 1.8,
-            "petallength": 6
+            "sepallength": [7.2],
+            "sepalwidth": [3.2],
+            "petalwidth": [1.8],
+            "petallength": [6]
         },
         "entityURI": "125",
         "annotations": [{
@@ -990,10 +990,10 @@
     },
     {
         "features": {
-            "sepallength": 5.4,
-            "sepalwidth": 3.9,
-            "petalwidth": 0.4,
-            "petallength": 1.7
+            "sepallength": [5.4],
+            "sepalwidth": [3.9],
+            "petalwidth": [0.4],
+            "petallength": [1.7]
         },
         "entityURI": "5",
         "annotations": [{
@@ -1013,10 +1013,10 @@
     },
     {
         "features": {
-            "sepallength": 6.2,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.8,
-            "petallength": 4.8
+            "sepallength": [6.2],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.8],
+            "petallength": [4.8]
         },
         "entityURI": "126",
         "annotations": [{
@@ -1036,10 +1036,10 @@
     },
     {
         "features": {
-            "sepallength": 4.6,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.3,
-            "petallength": 1.4
+            "sepallength": [4.6],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.3],
+            "petallength": [1.4]
         },
         "entityURI": "6",
         "annotations": [{
@@ -1059,10 +1059,10 @@
     },
     {
         "features": {
-            "sepallength": 6.1,
-            "sepalwidth": 3,
-            "petalwidth": 1.8,
-            "petallength": 4.9
+            "sepallength": [6.1],
+            "sepalwidth": [3],
+            "petalwidth": [1.8],
+            "petallength": [4.9]
         },
         "entityURI": "127",
         "annotations": [{
@@ -1082,10 +1082,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.2,
-            "petallength": 1.5
+            "sepallength": [5],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.2],
+            "petallength": [1.5]
         },
         "entityURI": "7",
         "annotations": [{
@@ -1105,10 +1105,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 2.8,
-            "petalwidth": 2.1,
-            "petallength": 5.6
+            "sepallength": [6.4],
+            "sepalwidth": [2.8],
+            "petalwidth": [2.1],
+            "petallength": [5.6]
         },
         "entityURI": "128",
         "annotations": [{
@@ -1128,10 +1128,10 @@
     },
     {
         "features": {
-            "sepallength": 4.4,
-            "sepalwidth": 2.9,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [4.4],
+            "sepalwidth": [2.9],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "8",
         "annotations": [{
@@ -1151,10 +1151,10 @@
     },
     {
         "features": {
-            "sepallength": 7.2,
-            "sepalwidth": 3,
-            "petalwidth": 1.6,
-            "petallength": 5.8
+            "sepallength": [7.2],
+            "sepalwidth": [3],
+            "petalwidth": [1.6],
+            "petallength": [5.8]
         },
         "entityURI": "129",
         "annotations": [{
@@ -1174,10 +1174,10 @@
     },
     {
         "features": {
-            "sepallength": 4.9,
-            "sepalwidth": 3.1,
-            "petalwidth": 0.1,
-            "petallength": 1.5
+            "sepallength": [4.9],
+            "sepalwidth": [3.1],
+            "petalwidth": [0.1],
+            "petallength": [1.5]
         },
         "entityURI": "9",
         "annotations": [{
@@ -1197,10 +1197,10 @@
     },
     {
         "features": {
-            "sepallength": 5.4,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.2,
-            "petallength": 1.7
+            "sepallength": [5.4],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.2],
+            "petallength": [1.7]
         },
         "entityURI": "20",
         "annotations": [{
@@ -1220,10 +1220,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.7,
-            "petalwidth": 0.4,
-            "petallength": 1.5
+            "sepallength": [5.1],
+            "sepalwidth": [3.7],
+            "petalwidth": [0.4],
+            "petallength": [1.5]
         },
         "entityURI": "21",
         "annotations": [{
@@ -1243,10 +1243,10 @@
     },
     {
         "features": {
-            "sepallength": 4.6,
-            "sepalwidth": 3.6,
-            "petalwidth": 0.2,
-            "petallength": 1
+            "sepallength": [4.6],
+            "sepalwidth": [3.6],
+            "petalwidth": [0.2],
+            "petallength": [1]
         },
         "entityURI": "22",
         "annotations": [{
@@ -1266,10 +1266,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.3,
-            "petalwidth": 0.5,
-            "petallength": 1.7
+            "sepallength": [5.1],
+            "sepalwidth": [3.3],
+            "petalwidth": [0.5],
+            "petallength": [1.7]
         },
         "entityURI": "23",
         "annotations": [{
@@ -1289,10 +1289,10 @@
     },
     {
         "features": {
-            "sepallength": 4.8,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.2,
-            "petallength": 1.9
+            "sepallength": [4.8],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.2],
+            "petallength": [1.9]
         },
         "entityURI": "24",
         "annotations": [{
@@ -1312,10 +1312,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3,
-            "petalwidth": 0.2,
-            "petallength": 1.6
+            "sepallength": [5],
+            "sepalwidth": [3],
+            "petalwidth": [0.2],
+            "petallength": [1.6]
         },
         "entityURI": "25",
         "annotations": [{
@@ -1335,10 +1335,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.4,
-            "petallength": 1.6
+            "sepallength": [5],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.4],
+            "petallength": [1.6]
         },
         "entityURI": "26",
         "annotations": [{
@@ -1358,10 +1358,10 @@
     },
     {
         "features": {
-            "sepallength": 5.2,
-            "sepalwidth": 3.5,
-            "petalwidth": 0.2,
-            "petallength": 1.5
+            "sepallength": [5.2],
+            "sepalwidth": [3.5],
+            "petalwidth": [0.2],
+            "petallength": [1.5]
         },
         "entityURI": "27",
         "annotations": [{
@@ -1381,10 +1381,10 @@
     },
     {
         "features": {
-            "sepallength": 5.2,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [5.2],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "28",
         "annotations": [{
@@ -1404,10 +1404,10 @@
     },
     {
         "features": {
-            "sepallength": 4.7,
-            "sepalwidth": 3.2,
-            "petalwidth": 0.2,
-            "petallength": 1.6
+            "sepallength": [4.7],
+            "sepalwidth": [3.2],
+            "petalwidth": [0.2],
+            "petallength": [1.6]
         },
         "entityURI": "29",
         "annotations": [{
@@ -1427,10 +1427,10 @@
     },
     {
         "features": {
-            "sepallength": 7.4,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.9,
-            "petallength": 6.1
+            "sepallength": [7.4],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.9],
+            "petallength": [6.1]
         },
         "entityURI": "130",
         "annotations": [{
@@ -1450,10 +1450,10 @@
     },
     {
         "features": {
-            "sepallength": 7.9,
-            "sepalwidth": 3.8,
-            "petalwidth": 2,
-            "petallength": 6.4
+            "sepallength": [7.9],
+            "sepalwidth": [3.8],
+            "petalwidth": [2],
+            "petallength": [6.4]
         },
         "entityURI": "131",
         "annotations": [{
@@ -1473,10 +1473,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 2.8,
-            "petalwidth": 2.2,
-            "petallength": 5.6
+            "sepallength": [6.4],
+            "sepalwidth": [2.8],
+            "petalwidth": [2.2],
+            "petallength": [5.6]
         },
         "entityURI": "132",
         "annotations": [{
@@ -1496,10 +1496,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.5,
-            "petallength": 5.1
+            "sepallength": [6.3],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.5],
+            "petallength": [5.1]
         },
         "entityURI": "133",
         "annotations": [{
@@ -1519,10 +1519,10 @@
     },
     {
         "features": {
-            "sepallength": 6.1,
-            "sepalwidth": 2.6,
-            "petalwidth": 1.4,
-            "petallength": 5.6
+            "sepallength": [6.1],
+            "sepalwidth": [2.6],
+            "petalwidth": [1.4],
+            "petallength": [5.6]
         },
         "entityURI": "134",
         "annotations": [{
@@ -1542,10 +1542,10 @@
     },
     {
         "features": {
-            "sepallength": 7.7,
-            "sepalwidth": 3,
-            "petalwidth": 2.3,
-            "petallength": 6.1
+            "sepallength": [7.7],
+            "sepalwidth": [3],
+            "petalwidth": [2.3],
+            "petallength": [6.1]
         },
         "entityURI": "135",
         "annotations": [{
@@ -1565,10 +1565,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 3.4,
-            "petalwidth": 2.4,
-            "petallength": 5.6
+            "sepallength": [6.3],
+            "sepalwidth": [3.4],
+            "petalwidth": [2.4],
+            "petallength": [5.6]
         },
         "entityURI": "136",
         "annotations": [{
@@ -1588,10 +1588,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 3.1,
-            "petalwidth": 1.8,
-            "petallength": 5.5
+            "sepallength": [6.4],
+            "sepalwidth": [3.1],
+            "petalwidth": [1.8],
+            "petallength": [5.5]
         },
         "entityURI": "137",
         "annotations": [{
@@ -1611,10 +1611,10 @@
     },
     {
         "features": {
-            "sepallength": 6,
-            "sepalwidth": 3,
-            "petalwidth": 1.8,
-            "petallength": 4.8
+            "sepallength": [6],
+            "sepalwidth": [3],
+            "petalwidth": [1.8],
+            "petallength": [4.8]
         },
         "entityURI": "138",
         "annotations": [{
@@ -1634,10 +1634,10 @@
     },
     {
         "features": {
-            "sepallength": 6.9,
-            "sepalwidth": 3.1,
-            "petalwidth": 2.1,
-            "petallength": 5.4
+            "sepallength": [6.9],
+            "sepalwidth": [3.1],
+            "petalwidth": [2.1],
+            "petallength": [5.4]
         },
         "entityURI": "139",
         "annotations": [{
@@ -1657,10 +1657,10 @@
     },
     {
         "features": {
-            "sepallength": 4.8,
-            "sepalwidth": 3.1,
-            "petalwidth": 0.2,
-            "petallength": 1.6
+            "sepallength": [4.8],
+            "sepalwidth": [3.1],
+            "petalwidth": [0.2],
+            "petallength": [1.6]
         },
         "entityURI": "30",
         "annotations": [{
@@ -1680,10 +1680,10 @@
     },
     {
         "features": {
-            "sepallength": 5.4,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.4,
-            "petallength": 1.5
+            "sepallength": [5.4],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.4],
+            "petallength": [1.5]
         },
         "entityURI": "31",
         "annotations": [{
@@ -1703,10 +1703,10 @@
     },
     {
         "features": {
-            "sepallength": 5.2,
-            "sepalwidth": 4.1,
-            "petalwidth": 0.1,
-            "petallength": 1.5
+            "sepallength": [5.2],
+            "sepalwidth": [4.1],
+            "petalwidth": [0.1],
+            "petallength": [1.5]
         },
         "entityURI": "32",
         "annotations": [{
@@ -1726,10 +1726,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 4.2,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [5.5],
+            "sepalwidth": [4.2],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "33",
         "annotations": [{
@@ -1749,10 +1749,10 @@
     },
     {
         "features": {
-            "sepallength": 4.9,
-            "sepalwidth": 3.1,
-            "petalwidth": 0.1,
-            "petallength": 1.5
+            "sepallength": [4.9],
+            "sepalwidth": [3.1],
+            "petalwidth": [0.1],
+            "petallength": [1.5]
         },
         "entityURI": "34",
         "annotations": [{
@@ -1772,10 +1772,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.2,
-            "petalwidth": 0.2,
-            "petallength": 1.2
+            "sepallength": [5],
+            "sepalwidth": [3.2],
+            "petalwidth": [0.2],
+            "petallength": [1.2]
         },
         "entityURI": "35",
         "annotations": [{
@@ -1795,10 +1795,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 3.5,
-            "petalwidth": 0.2,
-            "petallength": 1.3
+            "sepallength": [5.5],
+            "sepalwidth": [3.5],
+            "petalwidth": [0.2],
+            "petallength": [1.3]
         },
         "entityURI": "36",
         "annotations": [{
@@ -1818,10 +1818,10 @@
     },
     {
         "features": {
-            "sepallength": 4.9,
-            "sepalwidth": 3.1,
-            "petalwidth": 0.1,
-            "petallength": 1.5
+            "sepallength": [4.9],
+            "sepalwidth": [3.1],
+            "petalwidth": [0.1],
+            "petallength": [1.5]
         },
         "entityURI": "37",
         "annotations": [{
@@ -1841,10 +1841,10 @@
     },
     {
         "features": {
-            "sepallength": 4.4,
-            "sepalwidth": 3,
-            "petalwidth": 0.2,
-            "petallength": 1.3
+            "sepallength": [4.4],
+            "sepalwidth": [3],
+            "petalwidth": [0.2],
+            "petallength": [1.3]
         },
         "entityURI": "38",
         "annotations": [{
@@ -1864,10 +1864,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.4,
-            "petalwidth": 0.2,
-            "petallength": 1.5
+            "sepallength": [5.1],
+            "sepalwidth": [3.4],
+            "petalwidth": [0.2],
+            "petallength": [1.5]
         },
         "entityURI": "39",
         "annotations": [{
@@ -1887,10 +1887,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3.1,
-            "petalwidth": 2.4,
-            "petallength": 5.6
+            "sepallength": [6.7],
+            "sepalwidth": [3.1],
+            "petalwidth": [2.4],
+            "petallength": [5.6]
         },
         "entityURI": "140",
         "annotations": [{
@@ -1910,10 +1910,10 @@
     },
     {
         "features": {
-            "sepallength": 6.9,
-            "sepalwidth": 3.1,
-            "petalwidth": 2.3,
-            "petallength": 5.1
+            "sepallength": [6.9],
+            "sepalwidth": [3.1],
+            "petalwidth": [2.3],
+            "petallength": [5.1]
         },
         "entityURI": "141",
         "annotations": [{
@@ -1933,10 +1933,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.9,
-            "petallength": 5.1
+            "sepallength": [5.8],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.9],
+            "petallength": [5.1]
         },
         "entityURI": "142",
         "annotations": [{
@@ -1956,10 +1956,10 @@
     },
     {
         "features": {
-            "sepallength": 6.8,
-            "sepalwidth": 3.2,
-            "petalwidth": 2.3,
-            "petallength": 5.9
+            "sepallength": [6.8],
+            "sepalwidth": [3.2],
+            "petalwidth": [2.3],
+            "petallength": [5.9]
         },
         "entityURI": "143",
         "annotations": [{
@@ -1979,10 +1979,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3.3,
-            "petalwidth": 2.5,
-            "petallength": 5.7
+            "sepallength": [6.7],
+            "sepalwidth": [3.3],
+            "petalwidth": [2.5],
+            "petallength": [5.7]
         },
         "entityURI": "144",
         "annotations": [{
@@ -2002,10 +2002,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3,
-            "petalwidth": 2.3,
-            "petallength": 5.2
+            "sepallength": [6.7],
+            "sepalwidth": [3],
+            "petalwidth": [2.3],
+            "petallength": [5.2]
         },
         "entityURI": "145",
         "annotations": [{
@@ -2025,10 +2025,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.9,
-            "petallength": 5
+            "sepallength": [6.3],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.9],
+            "petallength": [5]
         },
         "entityURI": "146",
         "annotations": [{
@@ -2048,10 +2048,10 @@
     },
     {
         "features": {
-            "sepallength": 6.5,
-            "sepalwidth": 3,
-            "petalwidth": 2,
-            "petallength": 5.2
+            "sepallength": [6.5],
+            "sepalwidth": [3],
+            "petalwidth": [2],
+            "petallength": [5.2]
         },
         "entityURI": "147",
         "annotations": [{
@@ -2071,10 +2071,10 @@
     },
     {
         "features": {
-            "sepallength": 6.2,
-            "sepalwidth": 3.4,
-            "petalwidth": 2.3,
-            "petallength": 5.4
+            "sepallength": [6.2],
+            "sepalwidth": [3.4],
+            "petalwidth": [2.3],
+            "petallength": [5.4]
         },
         "entityURI": "148",
         "annotations": [{
@@ -2094,10 +2094,10 @@
     },
     {
         "features": {
-            "sepallength": 5.9,
-            "sepalwidth": 3,
-            "petalwidth": 1.8,
-            "petallength": 5.1
+            "sepallength": [5.9],
+            "sepalwidth": [3],
+            "petalwidth": [1.8],
+            "petallength": [5.1]
         },
         "entityURI": "149",
         "annotations": [{
@@ -2117,10 +2117,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.5,
-            "petalwidth": 0.3,
-            "petallength": 1.3
+            "sepallength": [5],
+            "sepalwidth": [3.5],
+            "petalwidth": [0.3],
+            "petallength": [1.3]
         },
         "entityURI": "40",
         "annotations": [{
@@ -2140,10 +2140,10 @@
     },
     {
         "features": {
-            "sepallength": 4.5,
-            "sepalwidth": 2.3,
-            "petalwidth": 0.3,
-            "petallength": 1.3
+            "sepallength": [4.5],
+            "sepalwidth": [2.3],
+            "petalwidth": [0.3],
+            "petallength": [1.3]
         },
         "entityURI": "41",
         "annotations": [{
@@ -2163,10 +2163,10 @@
     },
     {
         "features": {
-            "sepallength": 4.4,
-            "sepalwidth": 3.2,
-            "petalwidth": 0.2,
-            "petallength": 1.3
+            "sepallength": [4.4],
+            "sepalwidth": [3.2],
+            "petalwidth": [0.2],
+            "petallength": [1.3]
         },
         "entityURI": "42",
         "annotations": [{
@@ -2186,10 +2186,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.5,
-            "petalwidth": 0.6,
-            "petallength": 1.6
+            "sepallength": [5],
+            "sepalwidth": [3.5],
+            "petalwidth": [0.6],
+            "petallength": [1.6]
         },
         "entityURI": "43",
         "annotations": [{
@@ -2209,10 +2209,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.8,
-            "petalwidth": 0.4,
-            "petallength": 1.9
+            "sepallength": [5.1],
+            "sepalwidth": [3.8],
+            "petalwidth": [0.4],
+            "petallength": [1.9]
         },
         "entityURI": "44",
         "annotations": [{
@@ -2232,10 +2232,10 @@
     },
     {
         "features": {
-            "sepallength": 4.8,
-            "sepalwidth": 3,
-            "petalwidth": 0.3,
-            "petallength": 1.4
+            "sepallength": [4.8],
+            "sepalwidth": [3],
+            "petalwidth": [0.3],
+            "petallength": [1.4]
         },
         "entityURI": "45",
         "annotations": [{
@@ -2255,10 +2255,10 @@
     },
     {
         "features": {
-            "sepallength": 5.1,
-            "sepalwidth": 3.8,
-            "petalwidth": 0.2,
-            "petallength": 1.6
+            "sepallength": [5.1],
+            "sepalwidth": [3.8],
+            "petalwidth": [0.2],
+            "petallength": [1.6]
         },
         "entityURI": "46",
         "annotations": [{
@@ -2278,10 +2278,10 @@
     },
     {
         "features": {
-            "sepallength": 4.6,
-            "sepalwidth": 3.2,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [4.6],
+            "sepalwidth": [3.2],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "47",
         "annotations": [{
@@ -2301,10 +2301,10 @@
     },
     {
         "features": {
-            "sepallength": 5.3,
-            "sepalwidth": 3.7,
-            "petalwidth": 0.2,
-            "petallength": 1.5
+            "sepallength": [5.3],
+            "sepalwidth": [3.7],
+            "petalwidth": [0.2],
+            "petallength": [1.5]
         },
         "entityURI": "48",
         "annotations": [{
@@ -2324,10 +2324,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 3.3,
-            "petalwidth": 0.2,
-            "petallength": 1.4
+            "sepallength": [5],
+            "sepalwidth": [3.3],
+            "petalwidth": [0.2],
+            "petallength": [1.4]
         },
         "entityURI": "49",
         "annotations": [{
@@ -2347,10 +2347,10 @@
     },
     {
         "features": {
-            "sepallength": 7,
-            "sepalwidth": 3.2,
-            "petalwidth": 1.4,
-            "petallength": 4.7
+            "sepallength": [7],
+            "sepalwidth": [3.2],
+            "petalwidth": [1.4],
+            "petallength": [4.7]
         },
         "entityURI": "50",
         "annotations": [{
@@ -2370,10 +2370,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 3.2,
-            "petalwidth": 1.5,
-            "petallength": 4.5
+            "sepallength": [6.4],
+            "sepalwidth": [3.2],
+            "petalwidth": [1.5],
+            "petallength": [4.5]
         },
         "entityURI": "51",
         "annotations": [{
@@ -2393,10 +2393,10 @@
     },
     {
         "features": {
-            "sepallength": 6.9,
-            "sepalwidth": 3.1,
-            "petalwidth": 1.5,
-            "petallength": 4.9
+            "sepallength": [6.9],
+            "sepalwidth": [3.1],
+            "petalwidth": [1.5],
+            "petallength": [4.9]
         },
         "entityURI": "52",
         "annotations": [{
@@ -2416,10 +2416,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 2.3,
-            "petalwidth": 1.3,
-            "petallength": 4
+            "sepallength": [5.5],
+            "sepalwidth": [2.3],
+            "petalwidth": [1.3],
+            "petallength": [4]
         },
         "entityURI": "53",
         "annotations": [{
@@ -2439,10 +2439,10 @@
     },
     {
         "features": {
-            "sepallength": 6.5,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.5,
-            "petallength": 4.6
+            "sepallength": [6.5],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.5],
+            "petallength": [4.6]
         },
         "entityURI": "54",
         "annotations": [{
@@ -2462,10 +2462,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.3,
-            "petallength": 4.5
+            "sepallength": [5.7],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.3],
+            "petallength": [4.5]
         },
         "entityURI": "55",
         "annotations": [{
@@ -2485,10 +2485,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 3.3,
-            "petalwidth": 1.6,
-            "petallength": 4.7
+            "sepallength": [6.3],
+            "sepalwidth": [3.3],
+            "petalwidth": [1.6],
+            "petallength": [4.7]
         },
         "entityURI": "56",
         "annotations": [{
@@ -2508,10 +2508,10 @@
     },
     {
         "features": {
-            "sepallength": 4.9,
-            "sepalwidth": 2.4,
-            "petalwidth": 1,
-            "petallength": 3.3
+            "sepallength": [4.9],
+            "sepalwidth": [2.4],
+            "petalwidth": [1],
+            "petallength": [3.3]
         },
         "entityURI": "57",
         "annotations": [{
@@ -2531,10 +2531,10 @@
     },
     {
         "features": {
-            "sepallength": 6.6,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.3,
-            "petallength": 4.6
+            "sepallength": [6.6],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.3],
+            "petallength": [4.6]
         },
         "entityURI": "58",
         "annotations": [{
@@ -2554,10 +2554,10 @@
     },
     {
         "features": {
-            "sepallength": 5.2,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.4,
-            "petallength": 3.9
+            "sepallength": [5.2],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.4],
+            "petallength": [3.9]
         },
         "entityURI": "59",
         "annotations": [{
@@ -2577,10 +2577,10 @@
     },
     {
         "features": {
-            "sepallength": 5,
-            "sepalwidth": 2,
-            "petalwidth": 1,
-            "petallength": 3.5
+            "sepallength": [5],
+            "sepalwidth": [2],
+            "petalwidth": [1],
+            "petallength": [3.5]
         },
         "entityURI": "60",
         "annotations": [{
@@ -2600,10 +2600,10 @@
     },
     {
         "features": {
-            "sepallength": 5.9,
-            "sepalwidth": 3,
-            "petalwidth": 1.5,
-            "petallength": 4.2
+            "sepallength": [5.9],
+            "sepalwidth": [3],
+            "petalwidth": [1.5],
+            "petallength": [4.2]
         },
         "entityURI": "61",
         "annotations": [{
@@ -2623,10 +2623,10 @@
     },
     {
         "features": {
-            "sepallength": 6,
-            "sepalwidth": 2.2,
-            "petalwidth": 1,
-            "petallength": 4
+            "sepallength": [6],
+            "sepalwidth": [2.2],
+            "petalwidth": [1],
+            "petallength": [4]
         },
         "entityURI": "62",
         "annotations": [{
@@ -2646,10 +2646,10 @@
     },
     {
         "features": {
-            "sepallength": 6.1,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.4,
-            "petallength": 4.7
+            "sepallength": [6.1],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.4],
+            "petallength": [4.7]
         },
         "entityURI": "63",
         "annotations": [{
@@ -2669,10 +2669,10 @@
     },
     {
         "features": {
-            "sepallength": 5.6,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.3,
-            "petallength": 3.6
+            "sepallength": [5.6],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.3],
+            "petallength": [3.6]
         },
         "entityURI": "64",
         "annotations": [{
@@ -2692,10 +2692,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3.1,
-            "petalwidth": 1.4,
-            "petallength": 4.4
+            "sepallength": [6.7],
+            "sepalwidth": [3.1],
+            "petalwidth": [1.4],
+            "petallength": [4.4]
         },
         "entityURI": "65",
         "annotations": [{
@@ -2715,10 +2715,10 @@
     },
     {
         "features": {
-            "sepallength": 5.6,
-            "sepalwidth": 3,
-            "petalwidth": 1.5,
-            "petallength": 4.5
+            "sepallength": [5.6],
+            "sepalwidth": [3],
+            "petalwidth": [1.5],
+            "petallength": [4.5]
         },
         "entityURI": "66",
         "annotations": [{
@@ -2738,10 +2738,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 2.7,
-            "petalwidth": 1,
-            "petallength": 4.1
+            "sepallength": [5.8],
+            "sepalwidth": [2.7],
+            "petalwidth": [1],
+            "petallength": [4.1]
         },
         "entityURI": "67",
         "annotations": [{
@@ -2761,10 +2761,10 @@
     },
     {
         "features": {
-            "sepallength": 6.2,
-            "sepalwidth": 2.2,
-            "petalwidth": 1.5,
-            "petallength": 4.5
+            "sepallength": [6.2],
+            "sepalwidth": [2.2],
+            "petalwidth": [1.5],
+            "petallength": [4.5]
         },
         "entityURI": "68",
         "annotations": [{
@@ -2784,10 +2784,10 @@
     },
     {
         "features": {
-            "sepallength": 5.6,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.1,
-            "petallength": 3.9
+            "sepallength": [5.6],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.1],
+            "petallength": [3.9]
         },
         "entityURI": "69",
         "annotations": [{
@@ -2807,10 +2807,10 @@
     },
     {
         "features": {
-            "sepallength": 5.9,
-            "sepalwidth": 3.2,
-            "petalwidth": 1.8,
-            "petallength": 4.8
+            "sepallength": [5.9],
+            "sepalwidth": [3.2],
+            "petalwidth": [1.8],
+            "petallength": [4.8]
         },
         "entityURI": "70",
         "annotations": [{
@@ -2830,10 +2830,10 @@
     },
     {
         "features": {
-            "sepallength": 6.1,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.3,
-            "petallength": 4
+            "sepallength": [6.1],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.3],
+            "petallength": [4]
         },
         "entityURI": "71",
         "annotations": [{
@@ -2853,10 +2853,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.5,
-            "petallength": 4.9
+            "sepallength": [6.3],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.5],
+            "petallength": [4.9]
         },
         "entityURI": "72",
         "annotations": [{
@@ -2876,10 +2876,10 @@
     },
     {
         "features": {
-            "sepallength": 6.1,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.2,
-            "petallength": 4.7
+            "sepallength": [6.1],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.2],
+            "petallength": [4.7]
         },
         "entityURI": "73",
         "annotations": [{
@@ -2899,10 +2899,10 @@
     },
     {
         "features": {
-            "sepallength": 6.4,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.3,
-            "petallength": 4.3
+            "sepallength": [6.4],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.3],
+            "petallength": [4.3]
         },
         "entityURI": "74",
         "annotations": [{
@@ -2922,10 +2922,10 @@
     },
     {
         "features": {
-            "sepallength": 6.6,
-            "sepalwidth": 3,
-            "petalwidth": 1.4,
-            "petallength": 4.4
+            "sepallength": [6.6],
+            "sepalwidth": [3],
+            "petalwidth": [1.4],
+            "petallength": [4.4]
         },
         "entityURI": "75",
         "annotations": [{
@@ -2945,10 +2945,10 @@
     },
     {
         "features": {
-            "sepallength": 6.8,
-            "sepalwidth": 2.8,
-            "petalwidth": 1.4,
-            "petallength": 4.8
+            "sepallength": [6.8],
+            "sepalwidth": [2.8],
+            "petalwidth": [1.4],
+            "petallength": [4.8]
         },
         "entityURI": "76",
         "annotations": [{
@@ -2968,10 +2968,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3,
-            "petalwidth": 1.7,
-            "petallength": 5
+            "sepallength": [6.7],
+            "sepalwidth": [3],
+            "petalwidth": [1.7],
+            "petallength": [5]
         },
         "entityURI": "77",
         "annotations": [{
@@ -2991,10 +2991,10 @@
     },
     {
         "features": {
-            "sepallength": 6,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.5,
-            "petallength": 4.5
+            "sepallength": [6],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.5],
+            "petallength": [4.5]
         },
         "entityURI": "78",
         "annotations": [{
@@ -3014,10 +3014,10 @@
     },
     {
         "features": {
-            "sepallength": 5.7,
-            "sepalwidth": 2.6,
-            "petalwidth": 1,
-            "petallength": 3.5
+            "sepallength": [5.7],
+            "sepalwidth": [2.6],
+            "petalwidth": [1],
+            "petallength": [3.5]
         },
         "entityURI": "79",
         "annotations": [{
@@ -3037,10 +3037,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 3.3,
-            "petalwidth": 2.5,
-            "petallength": 6
+            "sepallength": [6.3],
+            "sepalwidth": [3.3],
+            "petalwidth": [2.5],
+            "petallength": [6]
         },
         "entityURI": "100",
         "annotations": [{
@@ -3060,10 +3060,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.9,
-            "petallength": 5.1
+            "sepallength": [5.8],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.9],
+            "petallength": [5.1]
         },
         "entityURI": "101",
         "annotations": [{
@@ -3083,10 +3083,10 @@
     },
     {
         "features": {
-            "sepallength": 7.1,
-            "sepalwidth": 3,
-            "petalwidth": 2.1,
-            "petallength": 5.9
+            "sepallength": [7.1],
+            "sepalwidth": [3],
+            "petalwidth": [2.1],
+            "petallength": [5.9]
         },
         "entityURI": "102",
         "annotations": [{
@@ -3106,10 +3106,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.8,
-            "petallength": 5.6
+            "sepallength": [6.3],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.8],
+            "petallength": [5.6]
         },
         "entityURI": "103",
         "annotations": [{
@@ -3129,10 +3129,10 @@
     },
     {
         "features": {
-            "sepallength": 6.5,
-            "sepalwidth": 3,
-            "petalwidth": 2.2,
-            "petallength": 5.8
+            "sepallength": [6.5],
+            "sepalwidth": [3],
+            "petalwidth": [2.2],
+            "petallength": [5.8]
         },
         "entityURI": "104",
         "annotations": [{
@@ -3152,10 +3152,10 @@
     },
     {
         "features": {
-            "sepallength": 7.6,
-            "sepalwidth": 3,
-            "petalwidth": 2.1,
-            "petallength": 6.6
+            "sepallength": [7.6],
+            "sepalwidth": [3],
+            "petalwidth": [2.1],
+            "petallength": [6.6]
         },
         "entityURI": "105",
         "annotations": [{
@@ -3175,10 +3175,10 @@
     },
     {
         "features": {
-            "sepallength": 4.9,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.7,
-            "petallength": 4.5
+            "sepallength": [4.9],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.7],
+            "petallength": [4.5]
         },
         "entityURI": "106",
         "annotations": [{
@@ -3198,10 +3198,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 2.4,
-            "petalwidth": 1.1,
-            "petallength": 3.8
+            "sepallength": [5.5],
+            "sepalwidth": [2.4],
+            "petalwidth": [1.1],
+            "petallength": [3.8]
         },
         "entityURI": "80",
         "annotations": [{
@@ -3221,10 +3221,10 @@
     },
     {
         "features": {
-            "sepallength": 7.3,
-            "sepalwidth": 2.9,
-            "petalwidth": 1.8,
-            "petallength": 6.3
+            "sepallength": [7.3],
+            "sepalwidth": [2.9],
+            "petalwidth": [1.8],
+            "petallength": [6.3]
         },
         "entityURI": "107",
         "annotations": [{
@@ -3244,10 +3244,10 @@
     },
     {
         "features": {
-            "sepallength": 5.5,
-            "sepalwidth": 2.4,
-            "petalwidth": 1,
-            "petallength": 3.7
+            "sepallength": [5.5],
+            "sepalwidth": [2.4],
+            "petalwidth": [1],
+            "petallength": [3.7]
         },
         "entityURI": "81",
         "annotations": [{
@@ -3267,10 +3267,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 2.5,
-            "petalwidth": 1.8,
-            "petallength": 5.8
+            "sepallength": [6.7],
+            "sepalwidth": [2.5],
+            "petalwidth": [1.8],
+            "petallength": [5.8]
         },
         "entityURI": "108",
         "annotations": [{
@@ -3290,10 +3290,10 @@
     },
     {
         "features": {
-            "sepallength": 5.8,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.2,
-            "petallength": 3.9
+            "sepallength": [5.8],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.2],
+            "petallength": [3.9]
         },
         "entityURI": "82",
         "annotations": [{
@@ -3313,10 +3313,10 @@
     },
     {
         "features": {
-            "sepallength": 7.2,
-            "sepalwidth": 3.6,
-            "petalwidth": 2.5,
-            "petallength": 6.1
+            "sepallength": [7.2],
+            "sepalwidth": [3.6],
+            "petalwidth": [2.5],
+            "petallength": [6.1]
         },
         "entityURI": "109",
         "annotations": [{
@@ -3336,10 +3336,10 @@
     },
     {
         "features": {
-            "sepallength": 6,
-            "sepalwidth": 2.7,
-            "petalwidth": 1.6,
-            "petallength": 5.1
+            "sepallength": [6],
+            "sepalwidth": [2.7],
+            "petalwidth": [1.6],
+            "petallength": [5.1]
         },
         "entityURI": "83",
         "annotations": [{
@@ -3359,10 +3359,10 @@
     },
     {
         "features": {
-            "sepallength": 5.4,
-            "sepalwidth": 3,
-            "petalwidth": 1.5,
-            "petallength": 4.5
+            "sepallength": [5.4],
+            "sepalwidth": [3],
+            "petalwidth": [1.5],
+            "petallength": [4.5]
         },
         "entityURI": "84",
         "annotations": [{
@@ -3382,10 +3382,10 @@
     },
     {
         "features": {
-            "sepallength": 6,
-            "sepalwidth": 3.4,
-            "petalwidth": 1.6,
-            "petallength": 4.5
+            "sepallength": [6],
+            "sepalwidth": [3.4],
+            "petalwidth": [1.6],
+            "petallength": [4.5]
         },
         "entityURI": "85",
         "annotations": [{
@@ -3405,10 +3405,10 @@
     },
     {
         "features": {
-            "sepallength": 6.7,
-            "sepalwidth": 3.1,
-            "petalwidth": 1.5,
-            "petallength": 4.7
+            "sepallength": [6.7],
+            "sepalwidth": [3.1],
+            "petalwidth": [1.5],
+            "petallength": [4.7]
         },
         "entityURI": "86",
         "annotations": [{
@@ -3428,10 +3428,10 @@
     },
     {
         "features": {
-            "sepallength": 6.3,
-            "sepalwidth": 2.3,
-            "petalwidth": 1.3,
-            "petallength": 4.4
+            "sepallength": [6.3],
+            "sepalwidth": [2.3],
+            "petalwidth": [1.3],
+            "petallength": [4.4]
         },
         "entityURI": "87",
         "annotations": [{

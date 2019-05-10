@@ -12,7 +12,7 @@ public class MulticlassEntity {
 	private List<ClassBelonging> classBelonging = new ArrayList<>();
 	private String _uri;
 	private String _abstract;
-	private Map<String, Double> numericFeatures = new HashMap<>();
+	private Map<String, Set<Object>> features = new HashMap<>();
 
 	public MulticlassEntity(String _uri, String _abstract) {
 		super();
@@ -24,16 +24,17 @@ public class MulticlassEntity {
 		classBelonging.add(new ClassBelonging(klass, confidence, classification));
 	}
 
-	public void addFeatureValue(String featureName, double value) {
-		if (value > 0.0)
-			numericFeatures.put(featureName, value);
+	public void addFeatureValue(String featureName, Object value) {
+		Set<Object> values = features.get(featureName);
+		if (values == null) {
+			values = new HashSet<>();
+		}
+		values.add(value);
+		features.put(featureName, values);
 	}
 
-	public double getFeatureValue(String featureName) {
-		Double v = numericFeatures.get(featureName);
-		if (v == null)
-			return 0;
-		return v;
+	public Set<Object> getFeatureValue(String featureName) {
+		return features.get(featureName);
 	}
 
 	public Klass getDominantClass() {
@@ -74,15 +75,11 @@ public class MulticlassEntity {
 	}
 
 	public Set<String> getFeatures() {
-		return numericFeatures.keySet();
+		return features.keySet();
 	}
 
-	public Map<String, Double> features() {
-		return numericFeatures;
-	}
-
-	public void setFeatures(Map<String, Double> f) {
-		this.numericFeatures = f;
+	public Map<String, Set<Object>> features() {
+		return features;
 	}
 
 	public List<ClassBelonging> getClassBelonging() {

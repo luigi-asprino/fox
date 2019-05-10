@@ -216,7 +216,7 @@ public class Dataset {
 		Instances instances = WekaUtils.loadARFFInstances("/Users/lgu/Desktop/iris.arff");
 		Dataset d = new Dataset();
 		d.loadInstances(instances, "class");
-		d.exportToJSON("/Users/lgu/Desktop/iris.json");
+		d.exportToJSON("/Users/lgu/Dropbox/repository/workspace_oxy/fox/crowdfeed/inputdata_examples/iris.json");
 	}
 
 }
