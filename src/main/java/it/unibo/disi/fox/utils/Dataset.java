@@ -1,4 +1,4 @@
-package it.unibo.disi.utils.fox;
+package it.unibo.disi.fox.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
