@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
@@ -16,6 +19,8 @@ import weka.core.converters.XRFFSaver;
  *
  */
 public class WekaUtils {
+	
+	private static Logger logger = LoggerFactory.getLogger(WekaUtils.class);
 
 	/**
 	 * Save a set of instances in XRFF format
@@ -42,6 +47,7 @@ public class WekaUtils {
 	 * @throws IOException
 	 */
 	public static Instances loadXRFFInstances(String fileIn) throws IOException {
+		logger.info("Loading {}",new File(fileIn).getAbsolutePath());
 		XRFFLoader loader = new XRFFLoader();
 		loader.setFile(new File(fileIn));
 		Instances result = loader.getDataSet();
@@ -49,6 +55,9 @@ public class WekaUtils {
 	}
 
 	public static Instances loadARFFInstances(String fileIn) throws IOException {
+		
+		logger.info("Loading {}",new File(fileIn).getAbsolutePath());
+		
 		ArffLoader loader = new ArffLoader();
 		loader.setFile(new File(fileIn));
 		return loader.getDataSet();
