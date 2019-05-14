@@ -1,4 +1,4 @@
-package it.unibo.disi.experiments;
+package it.unibo.disi.fox.experiments;
 
 
 import java.io.BufferedReader;
@@ -13,9 +13,9 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.unibo.disi.features.SENECA;
-import it.unibo.disi.features.Tipalo;
-import it.unibo.disi.utils.Utils;
+import it.unibo.disi.fox.services.SENECA;
+import it.unibo.disi.fox.services.Tipalo;
+import it.unibo.disi.fox.utils.Utils;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Attribute;
