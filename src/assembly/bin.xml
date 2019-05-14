@@ -1,0 +1,14 @@
+<assembly>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>bin</directory>
+			<outputDirectory>dataset-creator-${project.version}</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

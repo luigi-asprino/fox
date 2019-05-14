@@ -1,4 +1,4 @@
-package it.unibo.disi.experiments.fdistinctions;
+package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,4 +1,4 @@
-package it.unibo.disi.features;
+package it.unibo.disi.fox.services;
 
 import java.util.Set;
 
