@@ -1,0 +1,8 @@
+{
+    "nomeEntita": "Penna",
+    "descrizione": "Strumento utilizzato per scrivere sui fogli di carta.",
+    "features": {
+        "Colore": "Nero",
+        "Marca": "Bic"
+    }
+}
