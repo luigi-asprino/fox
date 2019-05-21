@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import it.cnr.istc.stlab.lgu.commons.spreadsheets.XLS;
-import it.unibo.disi.fox.fdistinctions.experiments.WekaUtils;
+import it.unibo.disi.fox.experiments.fdistinctions.WekaUtils;
 import it.unibo.disi.fox.model.ClassBelonging;
 import it.unibo.disi.fox.model.Classification;
 import it.unibo.disi.fox.model.Klass;

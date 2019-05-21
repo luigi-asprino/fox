@@ -1,4 +1,4 @@
-package it.unibo.disi.fox.fdistinctions.experiments;
+package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.io.File;
 import java.io.IOException;

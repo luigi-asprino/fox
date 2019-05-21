@@ -88,7 +88,7 @@ public class Utils {
 	public static int getNumberOfURITokensStartingWithCapitalCharacters(String[] uriTokens) {
 		int c = 0;
 		for (String s : uriTokens) {
-			if (Character.isUpperCase(s.charAt(0))) {
+			if (s.length()>0 && Character.isUpperCase(s.charAt(0))) {
 				c++;
 			}
 		}
