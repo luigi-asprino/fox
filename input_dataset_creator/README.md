@@ -14,5 +14,5 @@ Input Dataset Creator needs [RDF-HDT library](https://github.com/rdfhdt/hdt-cpp)
 ### Usage
 ```
 $ make all
-
+$ ./bin/input_dataset_creator <path to rdf-hdt file> <path to output file>
 ```
