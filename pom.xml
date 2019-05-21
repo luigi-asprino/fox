@@ -18,6 +18,7 @@
 		<weka.version>3.8.1</weka.version>
 		<lgu.commons.version>0.0.2</lgu.commons.version>
 		<junit.version>3.8.1</junit.version>
+		<rdfhdt.version>2.1-SNAPSHOT</rdfhdt.version>
 	</properties>
 
 	<build>
@@ -300,6 +301,12 @@
 		</dependency>
 
 
+		<!-- RDF HDT -->
+		<dependency>
+			<groupId>org.rdfhdt</groupId>
+			<artifactId>hdt-java-core</artifactId>
+			<version>${rdfhdt.version}</version>
+		</dependency>
 
 	</dependencies>
 </project>

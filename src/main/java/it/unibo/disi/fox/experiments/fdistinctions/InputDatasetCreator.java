@@ -16,6 +16,11 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.json.JSONObject;
+import org.rdfhdt.hdt.hdt.HDT;
+import org.rdfhdt.hdt.hdt.HDTManager;
+import org.rdfhdt.hdt.triples.IteratorTripleString;
+import org.rdfhdt.hdt.triples.TripleID;
+import org.rdfhdt.hdt.triples.TripleString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,27 +31,129 @@ public class InputDatasetCreator {
 
 	public static void main(String args[]) throws IOException {
 
-		String dbpediaSparqlEndpoint = args[0];
-		String tmpFile = args[1];
-		String output = args[2];
-		boolean excludeSelection = args.length > 3 ? Boolean.parseBoolean(args[3]) : false;
+		String type = args[0];
+		String endpoint = args[1];
+		String entityFile = args[2];
+		String featureFile = args[3];
+		boolean excludeSelection = args.length > 4 ? Boolean.parseBoolean(args[4]) : false;
 
-		logger.info("Parameters\nSPARQL endpoint: {}\nEntity file: {}\nOutput file: {}\nExclude selection: {}", dbpediaSparqlEndpoint, tmpFile, output, excludeSelection);
+		logger.info("Parameters\nSPARQL endpoint: {}\nEntity file: {}\nOutput file: {}\nExclude selection: {}", endpoint, entityFile, featureFile, excludeSelection);
+		System.out.println(TripleID.size());
 
+		if (type.equalsIgnoreCase("sparql")) {
+			createDatasetUsingSPARQLEndpoint(entityFile, featureFile, endpoint, excludeSelection);
+		} else if (type.equalsIgnoreCase("dump")) {
+			createDatasetUsingDump(entityFile, featureFile, endpoint, excludeSelection);
+		}
+
+	}
+
+	private static void createDatasetUsingDump(String entityFile, String featureFile, String dump, boolean excludeSelection) throws IOException {
 		if (!excludeSelection)
-			selectEntities(tmpFile, dbpediaSparqlEndpoint);
-		createInputDataset(tmpFile, output, dbpediaSparqlEndpoint);
+			selectEntitiesUsingDump(entityFile, dump);
+		createInputDatasetUsingDump(entityFile, featureFile, dump);
+	}
+
+	private static void selectEntitiesUsingDump(String entityFile, String dump) throws IOException {
+		FileOutputStream fos = new FileOutputStream(new File(entityFile));
+		HDT hdt = HDTManager.mapIndexedHDT(dump);
+		int c = 0;
+		try {
+			IteratorTripleString it = hdt.search("", "http://dbpedia.org/ontology/wikiPageID", "");
+			while (it.hasNext()) {
+				if (c > 0 && c % 10000 == 0) {
+					logger.info("{} entities dumped!", c);
+				}
+				c++;
+				TripleString tripleString = (TripleString) it.next();
+				fos.write((tripleString.getSubject() + "\n").getBytes());
+			}
+		} catch (org.rdfhdt.hdt.exceptions.NotFoundException e) {
+			logger.error(e.getMessage());
+		}
+		fos.flush();
+		fos.close();
+	}
+
+	private static void createInputDatasetUsingDump(String entityFile, String featureFile, String dump) throws IOException {
+		logger.info("Creating input dataset!");
+		//FIXME to complete
+		// In order to reuse the results of precedent runs, take the uri of the last entity found in an existent output file.
+		String lastEntityAnalysed = null;
+		BufferedReader br = new BufferedReader(new FileReader(featureFile));
+		String line;
+		while ((line = br.readLine()) != null) {
+			lastEntityAnalysed = line.split("\t")[0];
+		}
+		br.close();
+
+		logger.info("Found a run to resume: {}", lastEntityAnalysed);
+
+		FileOutputStream fos = new FileOutputStream(new File(featureFile), true);
+		Scanner inputStream = null;
+		try {
+			inputStream = new Scanner(new File(entityFile));
+		} catch (FileNotFoundException e) {
+			logger.error("Error while reading {} {}", e.getMessage(), entityFile);
+		}
+		int c = 0;
+
+		// if lastEntityAnalysed is null we do not search for the last URI
+		boolean foundLastURI = lastEntityAnalysed == null;
+
+		while (inputStream.hasNextLine()) {
+
+			if (c > 0 && c % CHECKPOINT == 0) {
+				logger.info("Dumped {} entities", c);
+			}
+			c++;
+
+			String currentEntityURI = inputStream.nextLine().toString();
+
+			if (!foundLastURI) {
+				if (currentEntityURI.equals(lastEntityAnalysed)) {
+					foundLastURI = true;
+					logger.info("Resuming from {}", currentEntityURI);
+				} else {
+					continue;
+				}
+			}
+
+			JSONObject proprieta = new JSONObject();
+			String astratto = null;
+
+			fos.write((currentEntityURI + "\t" + proprieta.toString() + "\t" + astratto + "\n").getBytes());
+			fos.flush();
+		}
+		inputStream.close();
+		fos.close();
+
 	}
 
 	/**
-	 * This method write on tmpFile the list of DBPedia entities. The method assumes that the set of DBPedia entities corresponds to the domain of the property dbo:wikiPageID.
+	 * This method creates both an entity list file and a feature file.
+	 * 
+	 * @param entityFile
+	 * @param featureFile
+	 * @param dbpediaSparqlEndpoint
+	 * @param excludeSelection
+	 * @throws IOException
+	 */
+	private static void createDatasetUsingSPARQLEndpoint(String entityFile, String featureFile, String dbpediaSparqlEndpoint, boolean excludeSelection) throws IOException {
+		if (!excludeSelection)
+			selectEntitiesUsingSPARQLEndpoint(entityFile, dbpediaSparqlEndpoint);
+		createInputDatasetUsingSPARQLEndpoint(entityFile, featureFile, dbpediaSparqlEndpoint);
+	}
+
+	/**
+	 * This method writes on tmpFile the list of DBPedia entities. The method assumes that the set of DBPedia entities corresponds to the domain of the property dbo:wikiPageID.
 	 * 
 	 * @param tmpFile
 	 *            absolute path of the file where the list of entities is dumped
 	 * @param dbpediaSparqlEndpoint
 	 *            the URL of the DBPedia SPARQL endpoint
 	 */
-	private static void selectEntities(String tmpFile, String dbpediaSparqlEndpoint) {
+	private static void selectEntitiesUsingSPARQLEndpoint(String tmpFile, String dbpediaSparqlEndpoint) {
 		PrintWriter outputStream = null;
 		try {
 			outputStream = new PrintWriter(tmpFile);
@@ -96,7 +203,7 @@ public class InputDatasetCreator {
 	 * @param dbpediaSPARQLEndpoint
 	 * @throws IOException
 	 */
-	private static void createInputDataset(String entities, String outputFile, String dbpediaSPARQLEndpoint) throws IOException {
+	private static void createInputDatasetUsingSPARQLEndpoint(String entities, String outputFile, String dbpediaSPARQLEndpoint) throws IOException {
 
 		logger.info("Creating input dataset!");
 
