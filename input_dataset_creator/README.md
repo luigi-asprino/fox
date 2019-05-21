@@ -9,7 +9,7 @@ It takes as input an RDF-HDT dataset and produces a TSV file with the following 
 
 ### Dependency
 
-Input Dataset Creator needs [RDF-HDT library](https://github.com/rdfhdt/hdt-cpp) being installed.
+Input Dataset Creator needs [RDF-HDT CPP-library](https://github.com/rdfhdt/hdt-cpp) being installed.
 
 ### Usage
 ```
