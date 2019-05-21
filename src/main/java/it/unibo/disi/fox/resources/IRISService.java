@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.unibo.disi.fox.experiments.WekaUtils;
+import it.unibo.disi.fox.fdistinctions.experiments.WekaUtils;
 import it.unibo.disi.fox.model.Classification;
 import it.unibo.disi.fox.model.Klass;
 import weka.classifiers.functions.SMO;

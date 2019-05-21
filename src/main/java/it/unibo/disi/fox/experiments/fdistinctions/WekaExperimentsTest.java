@@ -2,7 +2,7 @@ package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.util.Random;
 
-import it.unibo.disi.fox.experiments.WekaUtils;
+import it.unibo.disi.fox.fdistinctions.experiments.WekaUtils;
 import weka.classifiers.Evaluation;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
