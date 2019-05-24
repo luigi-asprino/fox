@@ -1,11 +1,13 @@
 package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.json.JSONObject;
@@ -32,7 +34,7 @@ public class TestClassInstance {
 	public static final String __isDetectedByORA = "__isDetectedByORA";
 	private static Logger logger = LoggerFactory.getLogger(TestClassInstance.class);
 
-	private static final String FILE_HEADER = "Entity URI\tClass\tConfidence\tAbstract";
+	private static final String FILE_HEADER = "Entity URI\tClass\tConfidence\tFeatures\tAbstract";
 
 	private static final int CHECKPOINT = 10000;
 
@@ -52,8 +54,13 @@ public class TestClassInstance {
 			// Load instances
 			// Note: pass the filepath of the XRFF as main parameter class_instance (dataset for training)
 			Instances instances = WekaUtils.loadXRFFInstances(config.getString("training_classinstance"));
-			FileWriter fileWriter = new FileWriter(config.getString("output_classinstance"));
+			new File(config.getString("output_folder")).mkdirs();
+			
+			FileWriter fileWriter = new FileWriter(config.getString("output_folder") + "/classinstance_features.tsv");
 			PrintWriter printWriter = new PrintWriter(fileWriter);
+
+			FileWriter fileWriter_noFeatures = new FileWriter(config.getString("output_folder") + "/classinstance.tsv");
+			PrintWriter printWriter_noFeatures = new PrintWriter(fileWriter_noFeatures);
 			logger.info("caricamento file e instances ");
 
 			printWriter.print(FILE_HEADER);
@@ -162,22 +169,27 @@ public class TestClassInstance {
 					}
 
 					// SENECA classe
+					String seneca_output;
 					Attribute a = instances.attribute(__isDetectedBySENECA);
 					if (seneca.isClass(uriEntity)) {
+						seneca_output = "YES";
 						si.setValue(a, a.indexOfValue("YES"));
 						logger.trace("è una classe");
 					} else {
+						seneca_output = "NO";
 						si.setValue(a, a.indexOfValue("NO"));
 						logger.trace("non è una classe");
 					}
 
 					// TIPALO
+					String tipalo_output;
 					Attribute at = instances.attribute(__isDetectedByORA);
 					if (tipalo.isClass(uriEntity)) {
+						tipalo_output = "YES";
 						si.setValue(at, at.indexOfValue("YES"));
 						logger.trace("è una classe");
 					} else {
-
+						tipalo_output = "NO";
 						si.setValue(at, at.indexOfValue("NO"));
 						logger.trace("non è una classe");
 					}
@@ -193,10 +205,13 @@ public class TestClassInstance {
 					String nomeClasse = instances.classAttribute().value((int) classe);
 
 					// scrittura su file
-					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + _abstaract + "\n");
+					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + seneca_output + "\t" + tipalo_output + "\t" + array[1] + "\t" + _abstaract + "\n");
+
+					printWriter_noFeatures.print(uriEntity + "\t" + nomeClasse + "\n");
 
 				}
 				printWriter.close();
+				printWriter_noFeatures.close();
 				logger.info("scrittura su file conclusa");
 			}
 

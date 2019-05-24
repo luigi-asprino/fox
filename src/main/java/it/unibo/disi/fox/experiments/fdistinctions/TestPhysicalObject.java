@@ -1,6 +1,7 @@
 package it.unibo.disi.fox.experiments.fdistinctions;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -28,7 +29,7 @@ public class TestPhysicalObject {
 	public static final String TOKEN_PREFIX_ATTRIBUTE = "_t_";
 	public static final String __isDetectedBySENECA = "__isDetectedBySENECA";
 	public static final String __isDetectedByORA = "__isDetectedByORA";
-	private static final String FILE_HEADER = "Entity URI\tClass\tConfidence\tAbstract";
+	private static final String FILE_HEADER = "Entity URI\tClass\tConfidence\tSENECA\tTìpalo\tProperties\tAbstract\t";
 	private static final int CHECKPOINT = 10000;
 	private static Logger logger = LoggerFactory.getLogger(TestClassInstance.class);
 
@@ -47,9 +48,14 @@ public class TestPhysicalObject {
 
 			// Load instances
 			// Note: pass the filepath of the XRFF as main parameter
+			new File(config.getString("output_folder")).mkdirs();
 			Instances instances = WekaUtils.loadXRFFInstances(config.getString("training_physisicalobject"));
-			FileWriter fileWriter = new FileWriter(config.getString("output_physicalobject"));
+			FileWriter fileWriter = new FileWriter(config.getString("output_folder") + "/physicalObject_features.tsv");
 			PrintWriter printWriter = new PrintWriter(fileWriter);
+
+			FileWriter fileWriterNoFeature = new FileWriter(config.getString("output_folder") + "/physicalObject.tsv");
+			PrintWriter printWriterNoFeature = new PrintWriter(fileWriterNoFeature);
+
 			printWriter.print(FILE_HEADER);
 			logger.info("carico file e instances ");
 
@@ -121,21 +127,26 @@ public class TestPhysicalObject {
 
 					// SENECA physical object
 					Attribute a = instances.attribute(__isDetectedBySENECA);
+					String seneca_output;
 					if (seneca.isPhysicalObject(uriEntity)) {
+						seneca_output = "YES";
 						si.setValue(a, a.indexOfValue("YES"));
 						logger.trace("è un oggetto fisico");
 					} else {
+						seneca_output = "NO";
 						si.setValue(a, a.indexOfValue("NO"));
 						logger.trace("non è un oggetto fisico");
 					}
 
 					// TIPALO
 					Attribute at = instances.attribute(__isDetectedByORA);
+					String tipalo_output;
 					if (tipalo.isPhysicalObject(uriEntity)) {
 						si.setValue(at, at.indexOfValue("YES"));
+						tipalo_output = "YES";
 						logger.trace("è un oggetto fisico");
 					} else {
-
+						tipalo_output = "NO";
 						si.setValue(at, at.indexOfValue("NO"));
 						logger.trace("non è un oggetto fisico");
 					}
@@ -151,12 +162,13 @@ public class TestPhysicalObject {
 					String nomeClasse = instances.classAttribute().value((int) classe);
 
 					// scrittura su file
-					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + _abstaract + "\n");
+					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + seneca_output + "\t" + tipalo_output + "\t" + array[1] + "\t" + _abstaract + "\n");
 
-
+					printWriterNoFeature.print(uriEntity + "\t" + nomeClasse + "\n");
 
 				}
 				printWriter.close();
+				printWriterNoFeature.close();
 				logger.info("scrittura su file conclusa");
 
 			}
