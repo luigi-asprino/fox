@@ -1,0 +1,83 @@
+[
+    {
+        "entityURI": "147",
+        "feedbacks": {
+            "classification": {
+                "classification_name": "iris",
+                "classes": [
+                    "Iris-setosa",
+                    "Iris-versicolor",
+                    "Iris-virginica"
+                ]
+            },
+            "results": [
+                {
+                    "class": "Iris-setosa",
+                    "number_of_feedbacks": 0
+                },
+                {
+                    "class": "Iris-versicolor",
+                    "number_of_feedbacks": 0
+                },
+                {
+                    "class": "Iris-virginica",
+                    "number_of_feedbacks": 1
+                }
+            ]
+        }
+    },
+    {
+        "entityURI": "83",
+        "feedbacks": {
+            "classification": {
+                "classification_name": "iris",
+                "classes": [
+                    "Iris-setosa",
+                    "Iris-versicolor",
+                    "Iris-virginica"
+                ]
+            },
+            "results": [
+                {
+                    "class": "Iris-setosa",
+                    "number_of_feedbacks": 0
+                },
+                {
+                    "class": "Iris-versicolor",
+                    "number_of_feedbacks": 1
+                },
+                {
+                    "class": "Iris-virginica",
+                    "number_of_feedbacks": 0
+                }
+            ]
+        }
+    },
+    {
+        "entityURI": "56",
+        "feedbacks": {
+            "classification": {
+                "classification_name": "iris",
+                "classes": [
+                    "Iris-setosa",
+                    "Iris-versicolor",
+                    "Iris-virginica"
+                ]
+            },
+            "results": [
+                {
+                    "class": "Iris-setosa",
+                    "number_of_feedbacks": 0
+                },
+                {
+                    "class": "Iris-versicolor",
+                    "number_of_feedbacks": 2
+                },
+                {
+                    "class": "Iris-virginica",
+                    "number_of_feedbacks": 0
+                }
+            ]
+        }
+    }
+]

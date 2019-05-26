@@ -18,6 +18,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <p style="display:none" id="prova">Ciao</p>
         <div class="container">
             <div align="center">
                 <p id="title">PROGETTO PER TESI SU INTELLIGENZA ARTIFICIALE</p>
@@ -45,11 +46,15 @@ and open the template in the editor.
                                <input type="hidden" value="<?php echo $numeroRandom; ?>" id="numEstratto" name="numEstratto">
                                <label class="label1">ENTITA':  </label><label class="label2"><?php echo $nomeEntita ?></label><br>
                                <?php foreach ($listaFeature as $row) { ?>
-                               <label class="label1"><?php echo strtoupper($row['nomeFeature']) ?>:</label><label class="label2"><?php echo strtolower($row['featureValue']) ?></label><br>
+                                  <label class="label1"><?php echo strtoupper($row['nomeFeature']) ?>:</label><label class="label2"><?php echo strtolower($row['featureValue']) ?></label><br>
                                <?php } ?>
-                               <?php $counter = 0;
-                               foreach ($listaClassificazioni as $row) { ?>
+                               <?php
+                               $counter = 0;
+                               foreach ($listaClassificazioni as $row) {
+                                  ?>
                                   <div class="divlistaFeature">
+                                      <input type="hidden" value="<?php echo $row['classificazione']; ?>" name="classificazione<?php echo $counter ?>">
+                                      <input type="hidden" value="<?php echo strtolower($row['valoreClassificazione']); ?>" name="valoreClassificazione<?php echo $counter ?>">
                                       <label class="label1"><?php echo strtoupper($row['classificazione']) ?>:</label><label class="label2"><?php echo strtolower($row['valoreClassificazione']) ?></label>
                                       <div style="float:right">
                                           <div class="form-check form-check-inline" style="margin-left: 55px;">
@@ -73,7 +78,7 @@ and open the template in the editor.
                            </form>
                         <?php } else { ?>
                            <h4 class="messaggioInfo" align="center">Hai espresso tutti i feedback possibili, grazie!</h4>
-<?php } ?>
+                        <?php } ?>
                     </div>
                     <div class="tab-pane fade shadow p-3 mb-5 bg-white rounded" id="pills-sfidaAlg" role="tabpanel" aria-labelledby="pills-sfidaAlg-tab" align="center">
                         <form method="POST" action="">
@@ -102,15 +107,59 @@ and open the template in the editor.
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" value="" id="numFeatures" name="numFeatures">
+                            <?php $counter2 = 1; echo $counter; ?>
+                            <input type="hidden" value="<?php echo $counter2; ?>" id="numFeatures" name="numFeatures">
                             <input type="submit" class="btn btn-primary" style="margin-top: 20px;" name="action" value="INVIA ENTITÀ"> 
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- CODICE PER IL POPUP CON I RISULTATI DELL'ENTITA' INSERITA -->
+        <form method="post" action="">
+            <div class="modal fade" id="modalRisultati" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold messaggioInfo">RESULT</h4>
+                            <!--
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            -->
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5" style="text-align: center">
+                                <label class='label1'>Entità classificata come:</label><br>
+                                <label class="label2"><?php echo $json_risultatoClassificazione; ?></label>
+                            </div>
+
+                            <div class="md-form mb-4" style="text-align: center">
+                                <div class="form-check form-check-inline" style="margin-left: 55px;">
+                                    <input class="form-check-input" type="radio" name="rispostaRisultato" value="True" required>
+                                    <label class="form-check-label label2" for="inlineRadio1">TRUE</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="rispostaRisultato" value="False">
+                                    <label class="form-check-label label2" for="inlineRadio2">FALSE</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <input type="submit" class="btn btn-primary" value="Invia Feed">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <script>
+
            $(document).ready(function () {
+
               $(function ()
               {
                  $(document).on('click', '.btn-add', function (e)
@@ -129,14 +178,15 @@ and open the template in the editor.
                                     <div class="input-group-prepend">\n\
                                         <div class="input-group-text">NOME FEATURE</div>\n\
                                     </div>\n\
-                                    <input type="text" class="form-control" name="inputNomeFeature'+id+'" id="inputNomeFeature' + id + '" placeholder="Digitare il nome della feature">\n\
+                                    <input type="text" class="form-control" name="inputNomeFeature' + id + '" id="inputNomeFeature' + id + '" placeholder="Digitare il nome della feature" required>\n\
                                     <div class="input-group-prepend">\n\
                                         <div class="input-group-text">VALORE</div>\n\
                                     </div>\n\
-                                    <input type="text" class="form-control" name="inputValFeature'+id+'" id="inputValFeature' + id + '" placeholder="Digitare il valore della feature">\n\
+                                    <input type="text" class="form-control" name="inputValFeature' + id + '" id="inputValFeature' + id + '" placeholder="Digitare il valore della feature" required>\n\
                                     <button class="btn btn-danger btn-remove" type="button">\n\
                                         <span>-</span>\n\
                                     </button>\n\
+                                    <?php $counter2++ ?>\n\
                                     </div>').appendTo(controlForm);
 
                     newEntry.find('input').val('');
@@ -149,6 +199,16 @@ and open the template in the editor.
                  });
               });
            });
+        </script>
+        <script>
+           $(document).ready(function () {
+              //istruzione che fa comparire il modal per visualizzare i risultati dell'entità inserita dall'utente
+              var showModal = '<?php echo $showModal; ?>';
+              if (showModal == "1") {
+                 $("#modalRisultati").modal("show");
+              }
+           });
+
         </script>
     </body>
 </html>

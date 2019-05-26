@@ -1,5 +1,5 @@
 <?php
-
+//java -jar jetty-server-0.0.1.jar jetty.properties
 try
 {
   $pdo = new PDO('mysql:host=localhost;dbname=progetto_tesi', 'root');

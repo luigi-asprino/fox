@@ -1,8 +1,9 @@
 {
-    "nomeEntita": "Penna",
-    "descrizione": "Strumento utilizzato per scrivere sui fogli di carta.",
+    "entityURI": "aaa",
+    "abstract": "aaa",
     "features": {
-        "Colore": "Nero",
-        "Marca": "Bic"
+        "aaa": [
+            "aaa"
+        ]
     }
 }
