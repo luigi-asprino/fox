@@ -57,7 +57,7 @@ public class IRISService {
 		while (values.hasMoreElements()) {
 			klassesInTheClassification.add(new Klass((String) values.nextElement()));
 		}
-		classification = new Classification(instances.relationName(), klassesInTheClassification, instances.relationName());
+		classification = new Classification(instances.relationName(), instances.relationName(), "http://localhost:8080/iris/classify", klassesInTheClassification, instances.relationName());
 
 		svm = new SMO();
 		svm.buildClassifier(instances);

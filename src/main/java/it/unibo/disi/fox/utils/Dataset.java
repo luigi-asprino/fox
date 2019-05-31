@@ -21,6 +21,7 @@ import it.cnr.istc.stlab.lgu.commons.spreadsheets.XLS;
 import it.unibo.disi.fox.experiments.fdistinctions.WekaUtils;
 import it.unibo.disi.fox.model.ClassBelonging;
 import it.unibo.disi.fox.model.Classification;
+import it.unibo.disi.fox.model.Feature;
 import it.unibo.disi.fox.model.Klass;
 import it.unibo.disi.fox.model.MulticlassEntity;
 import weka.core.Attribute;
@@ -34,6 +35,7 @@ public class Dataset {
 	private Map<String, MulticlassEntity> idMap = new HashMap<>();
 	private static final int CHECKPOINT = 100;
 	private Map<String, String> mapClassName = new HashMap<>();
+	private List<Classification> classifications = new ArrayList<>();
 
 	/**
 	 * Load a dataset of entity from a spreadhsheet complying with the following format:
@@ -142,7 +144,37 @@ public class Dataset {
 	public void exportToJSON(String pathJSON) throws IOException {
 		logger.info("Exporting dataset to {}", pathJSON);
 
-		JSONArray output = new JSONArray();
+		JSONObject output = new JSONObject();
+
+		JSONArray classifications = new JSONArray();
+		output.put("classification_methods", classifications);
+
+		for (Classification c : this.classifications) {
+			JSONObject c_json = new JSONObject();
+			classifications.put(c_json);
+			c_json.put("id", c.getId());
+			c_json.put("name", c.getName());
+			c_json.put("description", c.getMethodDescription());
+			c_json.put("classification_service_url", c.getClassificationServiceUrl());
+			JSONArray classes = new JSONArray();
+			c.getClasses().forEach(k -> {
+				classes.put(k.getClassName());
+			});
+			c_json.put("classes", classes);
+			JSONArray features = new JSONArray();
+			c_json.put("features", features);
+			c.getFeatures().forEach(f -> {
+				JSONObject feature = new JSONObject();
+				feature.put("id", f.getId());
+				feature.put("name", f.getName());
+				feature.put("description", f.getDescription());
+				features.put(feature);
+			});
+
+		}
+
+		JSONArray entities = new JSONArray();
+		output.put("entities", entities);
 		idMap.forEach((k, v) -> {
 
 			JSONObject entityObject = new JSONObject();
@@ -153,16 +185,8 @@ public class Dataset {
 			JSONArray annotations = new JSONArray();
 			for (ClassBelonging cb : v.getClassBelonging()) {
 				JSONObject jsonCB = new JSONObject();
-				JSONObject classificationObject = new JSONObject();
-				classificationObject.put("name", cb.getClassification().getName());
-				JSONArray classes = new JSONArray();
-				cb.getClassification().getClasses().forEach(c -> {
-					classes.put(c.getClassName());
-				});
-				classificationObject.put("classes", classes);
 
-				jsonCB.put("classification", classificationObject);
-				jsonCB.put("method", cb.getClassification().getMethodDescription());
+				jsonCB.put("classification_method", cb.getClassification().getName());
 				jsonCB.put("label", cb.getKlass().getClassName());
 				jsonCB.put("confidence", cb.getConfidence());
 				annotations.put(jsonCB);
@@ -170,7 +194,7 @@ public class Dataset {
 
 			entityObject.putOnce("annotations", annotations);
 
-			output.put(entityObject);
+			entities.put(entityObject);
 
 		});
 
@@ -181,11 +205,15 @@ public class Dataset {
 
 	}
 
+	public void addClassification(Classification c) {
+		classifications.add(c);
+	}
+
 	public void setMapClassName(Map<String, String> mapClassName) {
 		this.mapClassName = mapClassName;
 	}
 
-	public void loadInstances(Instances instances, String nameOfClassAttribute) {
+	public void loadInstances(Instances instances, String nameOfClassAttribute, String classificationServiceURL) {
 		Attribute classAttribute = instances.attribute(nameOfClassAttribute);
 		instances.setClass(classAttribute);
 
@@ -194,9 +222,16 @@ public class Dataset {
 		while (values.hasMoreElements()) {
 			klassesInTheClassification.add(new Klass((String) values.nextElement()));
 		}
-		Classification classification = new Classification(instances.relationName(), klassesInTheClassification, instances.relationName());
+
+		Classification classification = new Classification(instances.relationName(), instances.relationName(), classificationServiceURL, klassesInTheClassification, instances.relationName());
+		classifications.add(classification);
 
 		ArrayList<Attribute> attributes = WekaUtils.getAttributes(instances);
+
+		attributes.forEach(a -> {
+			classification.addFeature(new Feature(a.name(), a.name(), ""));
+		});
+
 		ListIterator<Instance> li = instances.listIterator();
 		int identifier = 0;
 		while (li.hasNext()) {
@@ -211,6 +246,5 @@ public class Dataset {
 		}
 
 	}
-
 
 }
