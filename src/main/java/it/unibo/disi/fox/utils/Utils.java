@@ -1,4 +1,4 @@
-package it.unibo.disi.utils;
+package it.unibo.disi.fox.utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,6 +18,8 @@ import edu.stanford.nlp.process.PTBTokenizer;
  *
  */
 public class Utils {
+	
+	// Prova
 
 	/**
 	 * 
@@ -86,7 +88,7 @@ public class Utils {
 	public static int getNumberOfURITokensStartingWithCapitalCharacters(String[] uriTokens) {
 		int c = 0;
 		for (String s : uriTokens) {
-			if (Character.isUpperCase(s.charAt(0))) {
+			if (s.length()>0 && Character.isUpperCase(s.charAt(0))) {
 				c++;
 			}
 		}
@@ -109,5 +111,7 @@ public class Utils {
 		}
 		return c;
 	}
+
+	
 
 }

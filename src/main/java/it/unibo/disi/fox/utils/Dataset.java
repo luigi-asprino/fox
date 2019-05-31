@@ -1,11 +1,16 @@
-package it.unibo.disi.utils.fox;
+package it.unibo.disi.fox.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,10 +18,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import it.cnr.istc.stlab.lgu.commons.spreadsheets.XLS;
+import it.unibo.disi.fox.experiments.fdistinctions.WekaUtils;
 import it.unibo.disi.fox.model.ClassBelonging;
 import it.unibo.disi.fox.model.Classification;
 import it.unibo.disi.fox.model.Klass;
 import it.unibo.disi.fox.model.MulticlassEntity;
+import weka.core.Attribute;
+import weka.core.Instance;
+import weka.core.Instances;
 
 public class Dataset {
 
@@ -144,7 +153,15 @@ public class Dataset {
 			JSONArray annotations = new JSONArray();
 			for (ClassBelonging cb : v.getClassBelonging()) {
 				JSONObject jsonCB = new JSONObject();
-				jsonCB.put("classification", cb.getClassification().getName());
+				JSONObject classificationObject = new JSONObject();
+				classificationObject.put("name", cb.getClassification().getName());
+				JSONArray classes = new JSONArray();
+				cb.getClassification().getClasses().forEach(c -> {
+					classes.put(c.getClassName());
+				});
+				classificationObject.put("classes", classes);
+
+				jsonCB.put("classification", classificationObject);
 				jsonCB.put("method", cb.getClassification().getMethodDescription());
 				jsonCB.put("label", cb.getKlass().getClassName());
 				jsonCB.put("confidence", cb.getConfidence());
@@ -167,5 +184,33 @@ public class Dataset {
 	public void setMapClassName(Map<String, String> mapClassName) {
 		this.mapClassName = mapClassName;
 	}
+
+	public void loadInstances(Instances instances, String nameOfClassAttribute) {
+		Attribute classAttribute = instances.attribute(nameOfClassAttribute);
+		instances.setClass(classAttribute);
+
+		Set<Klass> klassesInTheClassification = new HashSet<>();
+		Enumeration<Object> values = classAttribute.enumerateValues();
+		while (values.hasMoreElements()) {
+			klassesInTheClassification.add(new Klass((String) values.nextElement()));
+		}
+		Classification classification = new Classification(instances.relationName(), klassesInTheClassification, instances.relationName());
+
+		ArrayList<Attribute> attributes = WekaUtils.getAttributes(instances);
+		ListIterator<Instance> li = instances.listIterator();
+		int identifier = 0;
+		while (li.hasNext()) {
+			Instance i = (Instance) li.next();
+			String uriInstance = identifier++ + "";
+			MulticlassEntity me = new MulticlassEntity(uriInstance, "");
+			for (Attribute a : attributes) {
+				me.addFeatureValue(a.name(), i.value(a));
+			}
+			me.addKlassBelonging(new Klass(classAttribute.value((int) i.classValue())), i.weight(), classification);
+			idMap.put(uriInstance, me);
+		}
+
+	}
+
 
 }
