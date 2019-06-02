@@ -17,6 +17,7 @@ if ($control == "1") {
    $numeroRandom = $entita_numero[1];
    $listaFeature = loadFeature($nomeEntita);
    $listaClassificazioni = loadClassificazioni($nomeEntita);
+   $listaClassi = loadClassi($listaClassificazioni);
 }
 
 function estrazioneEntita($listaEntita) {
@@ -69,6 +70,30 @@ function loadClassificazioni($nomeEntita) {
    return $listaClassificazioni;
 }
 
+function loadClassi($listaClassificazioni) {
+   include $_SERVER['DOCUMENT_ROOT'] . '/progettoTesi/db.php';
+
+   foreach ($listaClassificazioni as $row) {
+      //interrogo il db per le classificazioni collegate all'entità estratta
+      $query = "SELECT * FROM classe_classificazione WHERE NomeClassificazione = ?";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(1, $row['classificazione']);
+      $stmt->execute();
+      $resp = $stmt->fetchAll();
+      $stmt->closeCursor();
+
+      $classi = [];
+      foreach ($resp as $row2) {
+         array_push($classi, $row2['Classe']);
+      }
+
+      $listaClassi = array('classificazione' => $row['classificazione'], 'classi' => $classi);
+      $classi = [];
+   }
+
+   return $listaClassi;
+}
+
 //print_r($listaFeature);
 //se l'utente clicca logout chiudo la sessione, azzero la variabile session['username'] e rimando alla home
 if (isset($_POST['action']) and $_POST['action'] == 'LOGOUT') {
@@ -86,7 +111,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA FEED') {
    $numEstratto = $_POST['numEstratto'];
    $counter = 0;
    //apro un ciclo in cui raccolgo le valutazioni per ogni classificazione esistente e faccio un salvataggio nel db 
-   //per ogni feature esistente
+   //per ogni classificazione
    foreach ($listaClassificazioni as $row) {
       $nomeClassificazione = $_POST['classificazione' . $counter];
       $valoreClassificazione = $_POST['valoreClassificazione' . $counter];
@@ -162,59 +187,75 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
    //print_r($print);
    //fwrite($fp, $print);
    //fclose($fp);
-   //istanzio i parametri per la chiamata al server di classificazione
-   $url = 'http://localhost:8080/iris/classify';
+   //faccio una chiamata al db per ricevere gli url di ogni server per le classificazioni
+   $query = "SELECT * FROM classificazione";
+   $stmt = $pdo->prepare($query);
+   $stmt->execute();
+   $resp = $stmt->fetchAll();
+   $stmt->closeCursor();
 
-   $options = array(
-       'http' => array(
-           'header' => "Content-Type: application/json\r\n" .
-           "Accept: application/json\r\n",
-           'method' => 'POST',
-           'content' => $print
-       )
-   );
+   foreach ($resp as $row) {
+      $listaUrl[] = array('classificazione' => $row['NomeClassificazione'], 'url' => $row['UrlServer']);
+   }
 
-   $context = stream_context_create($options);
-   $result = file_get_contents($url, false, $context);
+   foreach ($listaUrl as $riga) {
+      //istanzio i parametri per la chiamata al server di classificazione
+      $url = $riga['url'];
 
-   if ($result === FALSE) {
-      echo "<script> alert('Errore con la chiamata al server di classificazione!'); </script>";
-      exit();
-   } else {
-      //decodifico il risultato prodotto dal server
-      $json_result = json_decode($result, true);
+      $options = array(
+          'http' => array(
+              'header' => "Content-Type: application/json\r\n" .
+              "Accept: application/json\r\n",
+              'method' => 'POST',
+              'content' => $print
+          )
+      );
 
-      //estraggo i dati dal file json che ha prodotto il server di classificazione
-      if (empty($json_result)) {
-         echo "<script> alert('Errore! Il tentativo di classificazione non ha prodotto alcun risultato!'); </script>";
+      $context = stream_context_create($options);
+      $result = file_get_contents($url, false, $context);
+
+      if ($result === FALSE) {
+         echo "<script> alert('Errore con la chiamata al server di classificazione!'); </script>";
+         exit();
       } else {
-         foreach ($json_result as $key => $row) {
-            if (strtolower($key) == "entityuri") {
-               $json_entita = $row;
-            }
-            if (strtolower($key) == "abstract") {
-               $json_descrizione = $row;
-            }
-            if (strtolower($key) == "features") {
-               $json_features = $row;
-            }
-            if (strtolower($key) == "annotations") {
-               foreach ($row as $key2 => $row2) {
-                  if (is_array($row2)) {
-                     foreach ($row2 as $key3 => $row3) {
-                        if (strtolower($key3) == "method") {
-                           $json_metodo = $row3;
-                        }
-                        if (strtolower($key3) == "label") {
-                           $json_risultatoClassificazione = $row3;
-                        }
-                        if (strtolower($key3) == "classification") {
-                           foreach ($row3 as $key4 => $row4) {
-                              if (strtolower($key4) == "name") {
-                                 $json_nomeClassificazione = $row4;
-                              }
-                              if (strtolower($key4) == "classes") {
-                                 $json_classi = $row4;
+         //decodifico il risultato prodotto dal server
+         $json_result = json_decode($result, true);
+
+         //estraggo i dati dal file json che ha prodotto il server di classificazione
+         if (empty($json_result)) {
+            echo "<script> alert('Errore! Il tentativo di classificazione non ha prodotto alcun risultato!'); </script>";
+         } else {
+            foreach ($json_result as $key => $row) {
+               if (strtolower($key) == "entityuri") {
+                  $json_entita = $row;
+               }
+               if (strtolower($key) == "abstract") {
+                  $json_descrizione = $row;
+               }
+               if (strtolower($key) == "features") {
+                  $json_features = $row;
+               }
+               if (strtolower($key) == "annotations") {
+                  foreach ($row as $key2 => $row2) {
+                     if (is_array($row2)) {
+                        foreach ($row2 as $key3 => $row3) {
+                           if (strtolower($key3) == "method") {
+                              $json_metodo = $row3;
+                           }
+                           if (strtolower($key3) == "confidence") {
+                              $json_confidence = $row3;
+                           }
+                           if (strtolower($key3) == "label") {
+                              $json_risultatoClassificazione = $row3;
+                           }
+                           if (strtolower($key3) == "classification") {
+                              foreach ($row3 as $key4 => $row4) {
+                                 if (strtolower($key4) == "name") {
+                                    $json_nomeClassificazione = $row4;
+                                 }
+                                 if (strtolower($key4) == "classes") {
+                                    $json_classi = $row4;
+                                 }
                               }
                            }
                         }
@@ -222,25 +263,31 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
                   }
                }
             }
+            $risultatoClassificazione[] = array('classificazione' => $json_nomeClassificazione, 'metodo' => $json_metodo, 'confidence' => $json_confidence, 'risultato' => $json_risultatoClassificazione, 'classi' => $json_classi);
          }
-         //setto la variabile showModal in modo che il popup con i risultati venga visualizzato
-         $showModal = "1";
       }
    }
+
+   //setto la variabile showModal in modo che il popup con i risultati venga visualizzato
+   $showModal = "1";
 }
 
 if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
-   $valoreFeed = $_POST['rispostaRisultato'];
+   //$valoreFeed = $_POST['rispostaRisultato'];
    $uEntita = $_POST['json_entita'];
    $uDescrizione = $_POST['json_descrizione'];
    $uFeatures = unserialize($_POST['json_features']);
-   $uMetodo = $_POST['json_metodo'];
-   $uNomeClassificazione = $_POST['json_nomeClassificazione'];
-   $uRisultato = $_POST['json_risultato'];
-   $uClassi = $_POST['json_classi'];
+   $uRisultatiClassificazioni = unserialize($_POST['json_risultatiClassificazioni']);
+   /*
+     $uMetodo = $_POST['json_metodo'];
+     $uNomeClassificazione = $_POST['json_nomeClassificazione'];
+     $uRisultato = $_POST['json_risultato'];
+     $uClassi = $_POST['json_classi'];
+    * 
+    */
    $currentTimestamp = time();
    $data = date("Y/m/d", $currentTimestamp);
-   $risposta_utente = $_POST['rispostaRisultato'];
+   //$risposta_utente = $_POST['rispostaRisultato'];
 
    //faccio le chiamate al DB per salvare i dati inseriti dall'utente
    $origine = "User";
@@ -274,30 +321,36 @@ if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
             }
          }
       }
+      
+      $counter = 0;
+      foreach ($uRisultatiClassificazioni as $row) {
+         $risposta_utente = $_POST['rispostaRisultato' . $counter];
+         //salvo il feedback espresso dall'utente e dal server di classificazione
+         $query = "INSERT INTO annotazione_macchina(Data, Metodo, NomeEntita, NomeClassificazione, ValoreClassificazione,
+                   Confidence) VALUES(?, ?, ?, ?, ?, ?)";
+         $stmt = $pdo->prepare($query);
+         $stmt->bindParam(1, $data);
+         $stmt->bindParam(2, $row['metodo']);
+         $stmt->bindParam(3, $uEntita);
+         $stmt->bindParam(4, $row['classificazione']);
+         $stmt->bindParam(5, $row['risultato']);
+         $stmt->bindParam(6, $row['confidence']);
+         $stmt->execute();
+         $stmt->closeCursor();
 
-      //salvo il feedback espresso dall'utente e dal server di classificazione
-      $query = "INSERT INTO annotazione_macchina(Data, Metodo, NomeEntita, NomeClassificazione, ValoreClassificazione)
-                VALUES(?, ?, ?, ?, ?)";
-      $stmt = $pdo->prepare($query);
-      $stmt->bindParam(1, $data);
-      $stmt->bindParam(2, $uMetodo);
-      $stmt->bindParam(3, $uEntita);
-      $stmt->bindParam(4, $uNomeClassificazione);
-      $stmt->bindParam(5, $uRisultato);
-      $stmt->execute();
-      $stmt->closeCursor();
-      
-      $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione) VALUES(?, ?, ?, ?, ?, ?)";
-      $stmt = $pdo->prepare($query);
-      $stmt->bindParam(1, $data);
-      $stmt->bindParam(2, $_SESSION['username']);
-      $stmt->bindParam(3, $uEntita);
-      $stmt->bindParam(4, $uNomeClassificazione);
-      $stmt->bindParam(5, $uRisultato);
-      $stmt->bindParam(6, $risposta_utente);
-      $stmt->execute();
-      $stmt->closeCursor();
-      
+         $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione) VALUES(?, ?, ?, ?, ?, ?)";
+         $stmt = $pdo->prepare($query);
+         $stmt->bindParam(1, $data);
+         $stmt->bindParam(2, $_SESSION['username']);
+         $stmt->bindParam(3, $uEntita);
+         $stmt->bindParam(4, $row['classificazione']);
+         $stmt->bindParam(5, $row['risultato']);
+         $stmt->bindParam(6, $risposta_utente);
+         $stmt->execute();
+         $stmt->closeCursor();
+      }
+
+
       $_SESSION['messaggioOp'] = "<script> alert('Grazie! Entità inserita correttamente!'); </script>";
       redirect("listaFunzioni.php");
    }

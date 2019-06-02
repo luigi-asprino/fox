@@ -51,6 +51,22 @@ and open the template in the editor.
                                <?php
                                $counter = 0;
                                foreach ($listaClassificazioni as $row) {
+                                  foreach ($listaClassi as $key => $row2) {
+                                     if (strtolower($key) == "classificazione" and $row['classificazione'] == $row2) {
+                                        ?>
+                                        <label class="label1">POSSIBILI CLASSIFICAZIONI: </label>
+                                     <?php } else {
+                                        ?>
+                                        <label class="label2">
+                                           <?php
+                                           foreach ($row2 as $classe) {
+                                              echo strtolower($classe) . ", ";
+                                           }
+                                           ?>
+                                        </label>   
+                                        <?php
+                                     }
+                                  }
                                   ?>
                                   <div class="divlistaFeature">
                                       <input type="hidden" value="<?php echo $row['classificazione']; ?>" name="classificazione<?php echo $counter ?>">
@@ -131,31 +147,43 @@ and open the template in the editor.
                             -->
                         </div>
                         <div class="modal-body mx-3">
+                            <?php
+                            $counter = 0;
+                            foreach($risultatoClassificazione as $row){
+                            ?>
                             <div class="md-form mb-5" style="text-align: center">
+                                <label class="label1">CLASSIFICAZIONE:</label>
+                                <label class="label2"><?php echo $row['classificazione']; ?></label><br>
                                 <label class='label1'>Entità classificata come:</label><br>
-                                <label class="label2"><?php echo $json_risultatoClassificazione; ?></label>
+                                <label class="label2"><?php echo $row['risultato']; ?></label>
                             </div>
 
                             <div class="md-form mb-4" style="text-align: center">
                                 <div class="form-check form-check-inline" style="margin-left: 55px;">
-                                    <input class="form-check-input" type="radio" name="rispostaRisultato" value="True" required>
+                                    <input class="form-check-input" type="radio" name="rispostaRisultato<?php echo $counter; ?>" value="True" required>
                                     <label class="form-check-label label2" for="inlineRadio1">TRUE</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="rispostaRisultato" value="False">
+                                    <input class="form-check-input" type="radio" name="rispostaRisultato<?php echo $counter; ?>" value="False">
                                     <label class="form-check-label label2" for="inlineRadio2">FALSE</label>
                                 </div>
                             </div>
-
+                            <?php
+                            }
+                            ?>
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                             <input type="hidden" name="json_entita" value="<?php echo $json_entita ?>">
                             <input type="hidden" name="json_descrizione" value="<?php echo $json_descrizione ?>">
                             <input type="hidden" name="json_features" value="<?php echo htmlspecialchars(serialize($json_features)); ?>">
-                            <input type="hidden" name="json_metodo" value="<?php echo $json_metodo ?>">
-                            <input type="hidden" name="json_risultato" value="<?php echo $json_risultatoClassificazione ?>">
-                            <input type="hidden" name="json_nomeClassificazione"value="<?php echo $json_nomeClassificazione ?>">
-                            <input type="hidden" name="json_classi" value="<?php print_r($json_classi) ?>">
+                            <input type="hidden" name="json_risultatiClassificazioni" value="<?php echo htmlspecialchars(serialize($risultatoClassificazione)); ?>">
+                            <!--
+                            <input type="hidden" name="json_metodo" value="<?php //echo $json_metodo ?>">
+                            <input type="hidden" name="json_risultato" value="<?php //echo $json_risultatoClassificazione ?>">
+                            <input type="hidden" name="json_nomeClassificazione"value="<?php //echo $json_nomeClassificazione ?>">
+                            <input type="hidden" name="json_classi" value="<?php //print_r($json_classi) ?>">
+                            -->
+                            
                             <input type="submit" class="btn btn-primary" name="action" value="Invia Feed">
                         </div>
                     </div>
@@ -193,7 +221,7 @@ and open the template in the editor.
                                     <button class="btn btn-danger btn-remove" type="button">\n\
                                         <span>-</span>\n\
                                     </button>\n\
-                                    <?php $counter2++ ?>\n\
+<?php $counter2++ ?>\n\
                                     </div>').appendTo(controlForm);
 
                     newEntry.find('input').val('');
