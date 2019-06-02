@@ -107,7 +107,7 @@ and open the template in the editor.
                                     </div>
                                 </div>
                             </div>
-                            <?php $counter2 = 1; echo $counter; ?>
+                            <?php $counter2 = 1; ?>
                             <input type="hidden" value="<?php echo $counter2; ?>" id="numFeatures" name="numFeatures">
                             <input type="submit" class="btn btn-primary" style="margin-top: 20px;" name="action" value="INVIA ENTITÀ"> 
                         </form>
@@ -149,7 +149,14 @@ and open the template in the editor.
 
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
-                            <input type="submit" class="btn btn-primary" value="Invia Feed">
+                            <input type="hidden" name="json_entita" value="<?php echo $json_entita ?>">
+                            <input type="hidden" name="json_descrizione" value="<?php echo $json_descrizione ?>">
+                            <input type="hidden" name="json_features" value="<?php echo htmlspecialchars(serialize($json_features)); ?>">
+                            <input type="hidden" name="json_metodo" value="<?php echo $json_metodo ?>">
+                            <input type="hidden" name="json_risultato" value="<?php echo $json_risultatoClassificazione ?>">
+                            <input type="hidden" name="json_nomeClassificazione"value="<?php echo $json_nomeClassificazione ?>">
+                            <input type="hidden" name="json_classi" value="<?php print_r($json_classi) ?>">
+                            <input type="submit" class="btn btn-primary" name="action" value="Invia Feed">
                         </div>
                     </div>
                 </div>

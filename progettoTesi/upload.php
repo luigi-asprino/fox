@@ -57,116 +57,165 @@ if (isset($_POST['action']) and $_POST['action'] == 'Upload file') {
             $elencoClassi = [];
             // Stampa dati
             try {
-               foreach ($json_data as $row) {
-                  $elencoFeatures = $row['features'];
-                  $elencoAnnotazioni = $row['annotations'];
-                  $entita = $row['entityURI'];
-                  $descrizione = $row['abstract'];
+               foreach ($json_data as $indice => $json_row) {
+                  if (strtolower($indice) == "entities") {
+                     foreach ($json_row as $row) {
 
-                  //inserisco l'entita e la descrizione nel db
-                  $query = "INSERT INTO entita(NomeEntita, Descrizione) VALUES (?, ?)";
-                  $stmt = $pdo->prepare($query);
-                  $stmt->bindParam(1, $entita);
-                  $stmt->bindParam(2, $descrizione);
-                  if ($stmt->execute()) {
-                     $stmt->closeCursor();
+                        $elencoFeatures = $row['features'];
+                        $elencoAnnotazioni = $row['annotations'];
+                        $entita = $row['entityURI'];
+                        $descrizione = $row['abstract'];
+                        $origin = "dataset";
 
-                     //inserisco le features collegate all'entita nel db
-                     for ($i = 0; $i < sizeof($elencoFeatures); $i++) {
-                        $key = key($elencoFeatures);
-                        $nomeFeature = $key;
-                        foreach ($elencoFeatures[$key] as $row2) {
-                           $valoreFeature = $row2;
-                        }
-
-                        $query = "INSERT INTO feature(NomeFeature, NomeEntita) VALUES (?, ?)";
+                        //inserisco l'entita e la descrizione nel db
+                        $query = "INSERT INTO entita(NomeEntita, Descrizione, Origine) VALUES (?, ?, ?)";
                         $stmt = $pdo->prepare($query);
-                        $stmt->bindParam(1, $nomeFeature);
-                        $stmt->bindParam(2, $entita);
+                        $stmt->bindParam(1, $entita);
+                        $stmt->bindParam(2, $descrizione);
+                        $stmt->bindParam(3, $origin);
                         if ($stmt->execute()) {
                            $stmt->closeCursor();
 
-                           $query = "INSERT INTO feature_value(FeatureValue, NomeFeature, NomeEntita) VALUES (?, ?, ?)";
-                           $stmt = $pdo->prepare($query);
-                           $stmt->bindParam(1, $valoreFeature);
-                           $stmt->bindParam(2, $nomeFeature);
-                           $stmt->bindParam(3, $entita);
-                           if ($stmt->execute()) {
+                           //inserisco le features collegate all'entita nel db
+                           for ($i = 0; $i < sizeof($elencoFeatures); $i++) {
+                              $key = key($elencoFeatures);
+                              $nomeFeature = $key;
+                              foreach ($elencoFeatures[$key] as $row2) {
+                                 $valoreFeature = $row2;
+                              }
 
-                              $stmt->closeCursor();
+                              $query = "INSERT INTO feature(NomeFeature, NomeEntita) VALUES (?, ?)";
+                              $stmt = $pdo->prepare($query);
+                              $stmt->bindParam(1, $nomeFeature);
+                              $stmt->bindParam(2, $entita);
+                              if ($stmt->execute()) {
+                                 $stmt->closeCursor();
 
-                              next($elencoFeatures);
+                                 $query = "INSERT INTO feature_value(FeatureValue, NomeFeature, NomeEntita) VALUES (?, ?, ?)";
+                                 $stmt = $pdo->prepare($query);
+                                 $stmt->bindParam(1, $valoreFeature);
+                                 $stmt->bindParam(2, $nomeFeature);
+                                 $stmt->bindParam(3, $entita);
+                                 if ($stmt->execute()) {
+
+                                    $stmt->closeCursor();
+
+                                    next($elencoFeatures);
+                                 }
+                              }
+                           }
+
+                           foreach ($elencoAnnotazioni as $annotazione) {
+                              for ($i = 0; $i < sizeof($annotazione); $i++) {
+                                 $key = key($annotazione);
+                                 if (strtolower($key) == "classification_method") {
+                                    $metodo = $annotazione[$key];
+                                    $nomeClassificazione = $metodo;
+                                 } else if (strtolower($key) == "confidence") {
+                                    $confidence = $annotazione[$key];
+                                 } else if ($key == "label") {
+                                    $valoreClassificazione = $annotazione[$key];
+                                 }
+                                 next($annotazione);
+                              }
+
+                              //salvo nel db le annotazioni di ciascuna entita
+                              $currentTimestamp = time();
+                              $data = date("Y/m/d", $currentTimestamp);
+                              $query = "INSERT INTO annotazione_macchina(Data, Metodo, NomeEntita, NomeClassificazione, ValoreClassificazione, Confidence) VALUES (?, ?, ?, ?, ?, ?)";
+                              $stmt = $pdo->prepare($query);
+                              $stmt->bindParam(1, $data);
+                              $stmt->bindParam(2, $metodo);
+                              $stmt->bindParam(3, $entita);
+                              $stmt->bindParam(4, $nomeClassificazione);
+                              $stmt->bindParam(5, $valoreClassificazione);
+                              $stmt->bindParam(6, $confidence);
+                              if ($stmt->execute()) {
+                                 $stmt->closeCursor();
+                              }
                            }
                         }
                      }
-
-                     foreach ($elencoAnnotazioni as $annotazione) {
-                        for ($i = 0; $i < sizeof($annotazione); $i++) {
-                           $key = key($annotazione);
-                           if ($key == "method") {
-                              $metodo = $annotazione[$key];
-                           } else if ($key == "classification") {
-                              for ($j = 0; $j < sizeof($annotazione[$key]); $j++) {
-                                 $key2 = key($annotazione[$key]);
-                                 if ($key2 == "name") {
-                                    $array = $annotazione[$key];
-                                    $nomeClassificazione = $array[$key2];
-                                 } else if ($key2 == "classes") {
-                                    //se l'array non è ancora stato inizializzato, salvo tutte le classi nell'array
-                                    if (empty($elencoClassi)) {
-                                       $elencoClassi = $annotazione[$key];
-
-                                       foreach ($elencoClassi['classes'] as $classe) {
-                                          //inserisco le classi nel db
-                                          $query = "INSERT INTO classificazione(NomeClassificazione, NomeClasse) VALUES (?, ?)";
-                                          $stmt = $pdo->prepare($query);
-                                          $stmt->bindParam(1, $elencoClassi['name']);
-                                          $stmt->bindParam(2, $classe);
-                                          if ($stmt->execute()) {
-                                             $stmt->closeCursor();
-                                          }
-                                       }
-                                    } else {
-
-                                       //se l'array è già stato inizializzato precedentemente, controllo che non ci siano
-                                       //nuove classificazioni, in quel caso inserisco la nuova classificazione
-                                       $nuovoArrayClasse = $annotazione[$key];
-                                       if ($nuovoArrayClasse['name'] !== $elencoClassi['name']) {
-
-                                          foreach ($nuovoArrayClasse['classes'] as $classe) {
-                                             //inserisco le classi nel db
-                                             $query = "INSERT INTO classificazione(NomeClassificazione, NomeClasse) VALUES (?, ?)";
-                                             $stmt = $pdo->prepare($query);
-                                             $stmt->bindParam(1, $nuovoArrayClasse['name']);
-                                             $stmt->bindParam(2, $classe);
-                                             if ($stmt->execute()) {
-                                                $stmt->closeCursor();
-                                             }
-                                          }
-                                       }
+                  } else if (strtolower($indice == "classification_methods")) {
+                     foreach ($json_row as $indice2 => $classification_method) {
+                        foreach ($classification_method as $key => $row3) {
+                           if (strtolower($key) == "features") {
+                              $classification_features = [];
+                              foreach ($row3 as $key2 => $row_feature) {
+                                 foreach ($row_feature as $key3 => $feature) {
+                                    if (strtolower($key3) == "name") {
+                                       $classification_feature['name'] = $feature;
+                                    }
+                                    if (strtolower($key3) == "description") {
+                                       $classification_feature['description'] = $feature;
+                                    }
+                                    if (strtolower($key3) == "id") {
+                                       $classification_feature['id'] = $feature;
                                     }
                                  }
-
-                                 next($annotazione[$key]);
+                                 array_push($classification_features, $classification_feature);
                               }
-                           } else if ($key == "label") {
-                              $valoreClassificazione = $annotazione[$key];
-                           }
-                           next($annotazione);
-                        }
+                           } else if (strtolower($key) == "classification_service_url") {
+                              $classification_url = $row3;
+                           } else if (strtolower($key) == "classes") {
+                              $classification_classes = [];
+                              foreach ($row3 as $classe) {
+                                 array_push($classification_classes, $classe);
+                              }
+                           } else if (strtolower($key) == "name") {
+                              $classification_name = $row3;
 
-                        //salvo nel db le annotazioni di ciascuna entita
-                        $currentTimestamp = time();
-                        $data = date("Y/m/d", $currentTimestamp);
-                        $query = "INSERT INTO annotazione_macchina(Data, Metodo, NomeEntita, NomeClassificazione, ValoreClassificazione) VALUES (?, ?, ?, ?, ?)";
+                              echo $classification_name;
+                           } else if (strtolower($key) == "description") {
+                              $classification_description = $row3;
+                           } else if (strtolower($key) == "id") {
+                              $classification_id = $row3;
+                           }
+                        }
+                        //inserisco i dati estratti nel DB
+                        $query = "INSERT INTO classificazione(NomeClassificazione, UrlServer, Descrizione, Id)
+                                  VALUES (?, ?, ?, ?)";
                         $stmt = $pdo->prepare($query);
-                        $stmt->bindParam(1, $data);
-                        $stmt->bindParam(2, $metodo);
-                        $stmt->bindParam(3, $entita);
-                        $stmt->bindParam(4, $nomeClassificazione);
-                        $stmt->bindParam(5, $valoreClassificazione);
+                        $stmt->bindParam(1, $classification_name);
+                        $stmt->bindParam(2, $classification_url);
+                        $stmt->bindParam(3, $classification_description);
+                        $stmt->bindParam(4, $classification_id);
                         if ($stmt->execute()) {
                            $stmt->closeCursor();
+
+                           foreach ($classification_features as $infoFeature) {
+                              foreach ($infoFeature as $feature => $info) {
+                                 if (strtolower($feature) == "name") {
+                                    $feature_name = $info;
+                                 }
+                                 if (strtolower($feature) == "description") {
+                                    $feature_descrizione = $info;
+                                 }
+                                 if (strtolower($feature) == "id") {
+                                    $feature_id = $info;
+                                 }
+                              }
+                              //inserisco le feature della classificazione
+                              $query = "INSERT INTO feature_classificazione(NomeFeature, Descrizione, Id, NomeClassificazione)
+                                     VALUES (?, ?, ?, ?)";
+                              $stmt = $pdo->prepare($query);
+                              $stmt->bindParam(1, $feature_name);
+                              $stmt->bindParam(2, $feature_descrizione);
+                              $stmt->bindParam(3, $feature_id);
+                              $stmt->bindParam(4, $classification_name);
+                              $stmt->execute();
+                              $stmt->closeCursor();
+                           }
+
+                           foreach ($classification_classes as $classification_class) {
+                              //inserisco le possibili classi della classificazione
+                              $query = "INSERT INTO classe_classificazione(Classe, NomeClassificazione) VALUES (?, ?)";
+                              $stmt = $pdo->prepare($query);
+                              $stmt->bindParam(1, $classification_class);
+                              $stmt->bindParam(2, $classification_name);
+                              $stmt->execute();
+                              $stmt->closeCursor();
+                           }
                         }
                      }
                   }
@@ -182,7 +231,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Upload file') {
 
             ob_flush();
             flush();
-            sleep(5);
+            sleep(20);
             redirect("upload.php");
          } else {
             echo "<script> alert('Errore! Upload non completato!'); </script>";
@@ -206,14 +255,14 @@ if (isset($_POST['action']) and $_POST['action'] == 'DOWNLOAD USERS FEEDBACK') {
    }
 
    //interrogo il db per ricevere tutte le classificazioni esistenti
-   $query = "SELECT * FROM classificazione";
+   $query = "SELECT * FROM classe_classificazione";
    $stmt = $pdo->prepare($query);
    $stmt->execute();
    $resp = $stmt->fetchAll();
    $stmt->closeCursor();
 
    foreach ($resp as $row) {
-      $listaClassificazioni[] = array('nomeClassificazione' => $row['NomeClassificazione'], 'classe' => $row['NomeClasse']);
+      $listaClassificazioni[] = array('nomeClassificazione' => $row['NomeClassificazione'], 'classe' => $row['Classe']);
    }
 
    $listaClassificazioni2 = $listaClassificazioni;

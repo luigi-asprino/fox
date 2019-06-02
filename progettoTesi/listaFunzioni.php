@@ -106,7 +106,6 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA FEED') {
          $stmt->closeCursor();
 
          $counter++;
-         //echo "---------------------------------------------------------------------------------------------------------------";
          //print_r($listaEntita);
          array_splice($listaEntita, $numEstratto, 1);
          $_SESSION['listaEntita'] = $listaEntita;
@@ -116,8 +115,6 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA FEED') {
          redirect("listaFunzioni.php");
       }
    }
-
-   //redirect("listaFunzioni.php");
 }
 
 if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
@@ -226,18 +223,84 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
                }
             }
          }
-
          //setto la variabile showModal in modo che il popup con i risultati venga visualizzato
          $showModal = "1";
       }
    }
-   
-   if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
-      $valoreFeed = $_POST['rispostaRisultato'];
+}
+
+if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
+   $valoreFeed = $_POST['rispostaRisultato'];
+   $uEntita = $_POST['json_entita'];
+   $uDescrizione = $_POST['json_descrizione'];
+   $uFeatures = unserialize($_POST['json_features']);
+   $uMetodo = $_POST['json_metodo'];
+   $uNomeClassificazione = $_POST['json_nomeClassificazione'];
+   $uRisultato = $_POST['json_risultato'];
+   $uClassi = $_POST['json_classi'];
+   $currentTimestamp = time();
+   $data = date("Y/m/d", $currentTimestamp);
+   $risposta_utente = $_POST['rispostaRisultato'];
+
+   //faccio le chiamate al DB per salvare i dati inseriti dall'utente
+   $origine = "User";
+   //salvo l'entità
+   $query = "INSERT INTO entita(NomeEntita, Descrizione, Origine) VALUES(?, ?, ?)";
+   $stmt = $pdo->prepare($query);
+   $stmt->bindParam(1, $uEntita);
+   $stmt->bindParam(2, $uDescrizione);
+   $stmt->bindParam(3, $origine);
+   if ($stmt->execute()) {
+      $stmt->closeCursor();
+
+      foreach ($uFeatures as $key => $row) {
+         //salvo le features
+         $query = "INSERT INTO feature(NomeFeature, NomeEntita) VALUES(?, ?)";
+         $stmt = $pdo->prepare($query);
+         $stmt->bindParam(1, $key);
+         $stmt->bindParam(2, $uEntita);
+         if ($stmt->execute()) {
+            $stmt->closeCursor();
+
+            //salvo il valore delle feature
+            foreach ($row as $row2) {
+               $query = "INSERT INTO feature_value(FeatureValue, NomeFeature, NomeEntita) VALUES(?, ?, ?)";
+               $stmt = $pdo->prepare($query);
+               $stmt->bindParam(1, $row2);
+               $stmt->bindParam(2, $key);
+               $stmt->bindParam(3, $uEntita);
+               $stmt->execute();
+               $stmt->closeCursor();
+            }
+         }
+      }
+
+      //salvo il feedback espresso dall'utente e dal server di classificazione
+      $query = "INSERT INTO annotazione_macchina(Data, Metodo, NomeEntita, NomeClassificazione, ValoreClassificazione)
+                VALUES(?, ?, ?, ?, ?)";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(1, $data);
+      $stmt->bindParam(2, $uMetodo);
+      $stmt->bindParam(3, $uEntita);
+      $stmt->bindParam(4, $uNomeClassificazione);
+      $stmt->bindParam(5, $uRisultato);
+      $stmt->execute();
+      $stmt->closeCursor();
       
-      //DA FINIRE
+      $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione) VALUES(?, ?, ?, ?, ?, ?)";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(1, $data);
+      $stmt->bindParam(2, $_SESSION['username']);
+      $stmt->bindParam(3, $uEntita);
+      $stmt->bindParam(4, $uNomeClassificazione);
+      $stmt->bindParam(5, $uRisultato);
+      $stmt->bindParam(6, $risposta_utente);
+      $stmt->execute();
+      $stmt->closeCursor();
+      
+      $_SESSION['messaggioOp'] = "<script> alert('Grazie! Entità inserita correttamente!'); </script>";
+      redirect("listaFunzioni.php");
    }
-   
 }
 
 function redirect($url) {
