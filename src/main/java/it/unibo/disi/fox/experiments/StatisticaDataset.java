@@ -1,4 +1,4 @@
-package it.unibo.disi.experiments;
+package it.unibo.disi.fox.experiments;
 
 
 import java.io.File;
@@ -23,9 +23,10 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.unibo.disi.features.SENECA;
-import it.unibo.disi.features.Tipalo;
-import it.unibo.disi.utils.Utils;
+import it.unibo.disi.fox.experiments.fdistinctions.WekaUtils;
+import it.unibo.disi.fox.services.SENECA;
+import it.unibo.disi.fox.services.Tipalo;
+import it.unibo.disi.fox.utils.Utils;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Attribute;
@@ -36,7 +37,7 @@ import weka.filters.unsupervised.attribute.Remove;
 public class StatisticaDataset {
 
 	static Configuration config;
-	private static Logger logger = LoggerFactory.getLogger(DatasetStatistica.class);
+	private static Logger logger = LoggerFactory.getLogger(StatisticaDataset.class);
 	private static int numColonna = 10;
 	public static final int CHECKPOINT = 100, QUERY_ATTEMPTS = 3, SLEEP = 60000;
 	private static int numeroTot = 11;
