@@ -1,10 +1,9 @@
 package it.unibo.disi.experiments;
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -221,9 +220,19 @@ public class StatisticaDataset {
 						
 						
 						//caricamento del file TSV
-						String nomeFile = config.getString("inputfile");
+						String nomeFile = config.getString("fileDaLeggere2");
 						String line = ""; 
-						try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
+						
+						Scanner inputStream2 = null;
+						try {
+							inputStream2 = new Scanner(new File(nomeFile));
+							
+						} catch (FileNotFoundException e) {
+							logger.error("Error while reading {} {}", e.getMessage(), nomeFile);
+						}
+						
+						
+						
 							SENECA seneca = SENECA.getInstance(config.getString("SENECA_classes"), config.getString("SENECA_PhysicalObjects"));
 							Tipalo tipalo = Tipalo.getInstance(config.getString("Tipalo_classes"), config.getString("Tipalo_PhysicalObjects"));
 
@@ -240,12 +249,17 @@ public class StatisticaDataset {
 								atts2.add(instances2.attribute(i));
 							}
 							
-								//LEGGO il FILE per 
-					            while ((line = br.readLine()) != null) {
-					            	String [] array = line.split("\t");
-					                String uriEntity = array[0];
-					                JSONObject propriet = new JSONObject(array[1]);
-									String _abstaract = array[2];
+							//LEGGO il FILE dataset.tsv
+							while (inputStream2.hasNextLine()) {
+									String[] splitta2 = inputStream2.nextLine().split("\t");
+									String uriEntity = splitta2[0];
+					            	
+					                JSONObject propriet = new JSONObject(splitta2[1]);
+					                
+					                String _abstaract = " ";
+					               
+					                
+									//splitta2[2];
 									rigaCompleta = new String[numeroTot];
 									
 									//CLASS
@@ -489,12 +503,14 @@ public class StatisticaDataset {
 									fos.write((rigaPerFile).getBytes());
 									logger.info("riga scritta su file");
 									
-			
+							
 					            } //fine lettura riga del file di Input 
+							
 					            printWriter.close();
 					            printWriter2.close();
 					            logger.info("scrittura su file conclusa");
+		
 						}//fine try 
 		}//fine procedura 
 
-}
+
