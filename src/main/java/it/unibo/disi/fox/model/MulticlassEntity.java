@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import it.unibo.disi.fox.utils.Utils;
-
 public class MulticlassEntity {
 
 	private List<ClassBelonging> classBelonging = new ArrayList<>();
