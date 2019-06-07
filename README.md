@@ -7,3 +7,7 @@ The documentation of these ontologies is available at the following links:
 * [L0](https://w3id.org/fox/L0): an ontology unifying common concepts defined in different foundational ontologies.
 
 The ontologies are provided in RDF/XML format and released under license [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
+
+# Dependencies
+
+* [lgu.commons](https://github.com/luigi-asprino/lgu-commons)

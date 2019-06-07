@@ -18,15 +18,13 @@ using namespace hdt;
 
 int create_input_dataset(char* hdt_path, char* fileout) {
 	// Load HDT file
-	//HDT *hdt = HDTManager::mapHDT("/Volumes/L128/data/dbpedia/2016-10/dbpedia2016-10.hdt");
 	HDT *hdt = HDTManager::mapHDT(hdt_path);
 
 	ofstream myfile;
-	//myfile.open("/Users/lgu/Desktop/dataset.tsv");
 	myfile.open(fileout);
 
 	IteratorTripleString *it_all = hdt->search("", "", "");
-	cout << it_all->estimatedNumResults() << endl;
+	cout << "Total number of triples " << it_all->estimatedNumResults() << endl;
 	delete it_all;
 
 	// Enumerate all triples matching a pattern ("" means any)
@@ -38,57 +36,66 @@ int create_input_dataset(char* hdt_path, char* fileout) {
 			cout << entity_number << endl;
 		}
 		entity_number++;
+
 		TripleString *triple = it->next();
 
-		myfile << triple->getSubject();
-		myfile << "\t";
+		IteratorTripleString *it_red = hdt->search(triple->getSubject().data(),
+				"http://dbpedia.org/ontology/wikiPageRedirects", "");
 
-		// get features
-		map<string, int> properties;
-		IteratorTripleString *it_properties = hdt->search(
-				triple->getSubject().data(), "", "");
-		while (it_properties->hasNext()) {
-			TripleString *triple_properties = it_properties->next();
-			int count = 0;
-			map<string, int>::iterator it = properties.find(
-					triple_properties->getPredicate());
-			if (it != properties.end()) {
-				count = properties.lower_bound(
-						triple_properties->getPredicate())->second;
+		if (!it_red->hasNext()) { // check if it is a redirect page
+
+			myfile << triple->getSubject();
+			myfile << "\t";
+
+			// get features
+			map<string, int> properties;
+			IteratorTripleString *it_properties = hdt->search(
+					triple->getSubject().data(), "", "");
+
+			while (it_properties->hasNext()) {
+				TripleString *triple_properties = it_properties->next();
+				int count = 0;
+				map<string, int>::iterator it = properties.find(
+						triple_properties->getPredicate());
+				if (it != properties.end()) {
+					count = properties.lower_bound(
+							triple_properties->getPredicate())->second;
+				}
+				count++;
+				properties.erase(triple_properties->getPredicate());
+				properties.insert(
+						pair<string, int>(triple_properties->getPredicate(),
+								count));
 			}
-			count++;
-			properties.erase(triple_properties->getPredicate());
-			properties.insert(
-					pair<string, int>(triple_properties->getPredicate(),
-							count));
-		}
-		map<string, int>::iterator itr;
-		myfile << "{";
-		for (itr = properties.begin(); itr != properties.end(); ++itr) {
-			if (itr != properties.begin()) {
-				myfile << ",";
+			map<string, int>::iterator itr;
+			myfile << "{";
+			for (itr = properties.begin(); itr != properties.end(); ++itr) {
+				if (itr != properties.begin()) {
+					myfile << ",";
+				}
+				myfile << "\"" << itr->first << "\":" << itr->second;
 			}
-			myfile << "\"" << itr->first << "\":" << itr->second;
+			myfile << "}";
+			delete it_properties;
+
+			// get abstract
+			myfile << "\t";
+			IteratorTripleString *it_abstract = hdt->search(
+					triple->getSubject().data(),
+					"http://dbpedia.org/ontology/abstract", "");
+			while (it_abstract->hasNext()) {
+				TripleString *triple_abstract = it_abstract->next();
+				string _abstract = triple_abstract->getObject();
+				std::replace(_abstract.begin(), _abstract.end(), '\t', ' ');
+				std::replace(_abstract.begin(), _abstract.end(), '\n', ' ');
+				myfile << _abstract;
+			}
+			delete it_abstract;
+
+			myfile << "\n";
 		}
-		myfile << "}";
-		delete it_properties;
 
-		// get abstract
-		myfile << "\t";
-		IteratorTripleString *it_abstract = hdt->search(
-				triple->getSubject().data(),
-				"http://dbpedia.org/ontology/abstract", "");
-		while (it_abstract->hasNext()) {
-			TripleString *triple_abstract = it_abstract->next();
-			string _abstract = triple_abstract->getObject();
-			std::replace(_abstract.begin(), _abstract.end(), '\t', ' ');
-			std::replace(_abstract.begin(), _abstract.end(), '\n', ' ');
-			myfile << _abstract;
-		}
-		delete it_abstract;
-
-		myfile << "\n";
-
+		delete it_red;
 	}
 	delete it; // Remember to delete iterator to avoid memory leaks!
 
@@ -101,6 +108,15 @@ int create_input_dataset(char* hdt_path, char* fileout) {
 }
 
 int test() {
+
+	string _abstract = "parola\tparola2\nparola3";
+	cout << _abstract << endl;
+
+	std::replace(_abstract.begin(), _abstract.end(), '\t', ' ');
+	std::replace(_abstract.begin(), _abstract.end(), '\n', ' ');
+
+	cout << _abstract << endl;
+
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 
 	map<string, int> my_map;

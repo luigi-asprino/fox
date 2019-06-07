@@ -16,9 +16,10 @@
 		<jetty.version>9.4.17.v20190418</jetty.version>
 		<swagger.version>1.5.10</swagger.version>
 		<weka.version>3.8.1</weka.version>
-		<lgu.commons.version>0.0.2</lgu.commons.version>
+		<lgu.commons.version>0.0.3</lgu.commons.version>
 		<junit.version>3.8.1</junit.version>
 		<rdfhdt.version>2.1-SNAPSHOT</rdfhdt.version>
+		<guava.version>23.0</guava.version>
 	</properties>
 
 	<build>
@@ -306,6 +307,13 @@
 			<groupId>org.rdfhdt</groupId>
 			<artifactId>hdt-java-core</artifactId>
 			<version>${rdfhdt.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 
 	</dependencies>

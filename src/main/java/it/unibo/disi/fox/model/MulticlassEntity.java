@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import it.unibo.disi.fox.utils.Utils;
+
 public class MulticlassEntity {
 
 	private List<ClassBelonging> classBelonging = new ArrayList<>();
@@ -144,7 +146,8 @@ public class MulticlassEntity {
 		return sum / entities.size();
 	}
 
-	public static double getAverageAgreementOnClass(Set<MulticlassEntity> entities1, Set<MulticlassEntity> entities2, Klass c1, Klass c2) {
+	public static double getAverageAgreementOnClass(Set<MulticlassEntity> entities1, Set<MulticlassEntity> entities2,
+			Klass c1, Klass c2) {
 		double sum = 0;
 		for (MulticlassEntity e : entities1) {
 			sum += e.getConfidenceOnClass(c1);

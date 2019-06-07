@@ -33,8 +33,8 @@ public class TestClassInstance {
 	public static final String __isDetectedBySENECA = "__isDetectedBySENECA";
 	public static final String __isDetectedByORA = "__isDetectedByORA";
 	private static Logger logger = LoggerFactory.getLogger(TestClassInstance.class);
-
-	private static final String FILE_HEADER = "Entity URI\tClass\tConfidence\tFeatures\tAbstract";
+	
+	private static final String FILE_HEADER = "Entity_URI\tClass\tConfidence\tSENECA\tTipalo\tNumber_of_URI_tokens\tNUMBER_OF_TOKENS_FOUND_IN_ABSTRACT\tNUMBER_URI_CAPITAL_TOKENS\tProperties\tAbstract\n";
 
 	private static final int CHECKPOINT = 10000;
 
@@ -52,10 +52,11 @@ public class TestClassInstance {
 			}
 
 			// Load instances
-			// Note: pass the filepath of the XRFF as main parameter class_instance (dataset for training)
+			// Note: pass the filepath of the XRFF as main parameter class_instance (dataset
+			// for training)
 			Instances instances = WekaUtils.loadXRFFInstances(config.getString("training_classinstance"));
 			new File(config.getString("output_folder")).mkdirs();
-			
+
 			FileWriter fileWriter = new FileWriter(config.getString("output_folder") + "/classinstance_features.tsv");
 			PrintWriter printWriter = new PrintWriter(fileWriter);
 
@@ -85,8 +86,10 @@ public class TestClassInstance {
 			int line_number = 0;
 			try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
 
-				SENECA seneca = SENECA.getInstance(config.getString("SENECA_classes"), config.getString("SENECA_PhysicalObjects"));
-				Tipalo tipalo = Tipalo.getInstance(config.getString("Tipalo_classes"), config.getString("Tipalo_PhysicalObjects"));
+				SENECA seneca = SENECA.getInstance(config.getString("SENECA_classes"),
+						config.getString("SENECA_PhysicalObjects"));
+				Tipalo tipalo = Tipalo.getInstance(config.getString("Tipalo_classes"),
+						config.getString("Tipalo_PhysicalObjects"));
 
 				ArrayList<Attribute> atts = new ArrayList<>();
 				for (int i = 0; i < instances.numAttributes(); i++) {
@@ -104,6 +107,10 @@ public class TestClassInstance {
 					String[] array = line.split("\t");
 
 					String uriEntity = array[0];
+
+					if (!uriEntity.startsWith("http://dbpedia.org/resource")) {
+						throw new RuntimeException("Format error");
+					}
 
 					JSONObject propriet = new JSONObject(array[1]);
 
@@ -205,7 +212,9 @@ public class TestClassInstance {
 					String nomeClasse = instances.classAttribute().value((int) classe);
 
 					// scrittura su file
-					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + seneca_output + "\t" + tipalo_output + "\t" + array[1] + "\t" + _abstaract + "\n");
+					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + seneca_output + "\t"
+							+ tipalo_output + "\t" + n1 + "\t" + n2 + "\t" + n3 + "\t" + array[1] + "\t" + _abstaract
+							+ "\n");
 
 					printWriter_noFeatures.print(uriEntity + "\t" + nomeClasse + "\n");
 

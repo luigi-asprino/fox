@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.cnr.istc.stlab.lgu.commons.spreadsheets.XLS;
+import it.cnr.istc.stlab.lgu.commons.tables.XLS;
 import it.unibo.disi.fox.experiments.fdistinctions.WekaUtils;
 import it.unibo.disi.fox.model.ClassBelonging;
 import it.unibo.disi.fox.model.Classification;
@@ -36,7 +36,8 @@ public class Dataset {
 	private Map<String, String> mapClassName = new HashMap<>();
 
 	/**
-	 * Load a dataset of entity from a spreadhsheet complying with the following format:
+	 * Load a dataset of entity from a spreadhsheet complying with the following
+	 * format:
 	 * 
 	 * First row: (headings) URI Class Confidence Feature1 ... FeatureN Abstract
 	 * 
@@ -54,7 +55,8 @@ public class Dataset {
 	}
 
 	/**
-	 * Load a dataset of entity from a spreadhsheet complying with the following format:
+	 * Load a dataset of entity from a spreadhsheet complying with the following
+	 * format:
 	 * 
 	 * First row (headings) URI Class Feature1 ... FeatureN Abstract
 	 * 
@@ -63,32 +65,38 @@ public class Dataset {
 	 * @param classification
 	 * @throws Exception
 	 */
-	public void loadEdgeFileWithClasses(String fileIn, int colClass, int colUri, Classification classification) throws Exception {
+	public void loadEdgeFileWithClasses(String fileIn, int colClass, int colUri, Classification classification)
+			throws Exception {
 		logger.info("Loading dataset from {}", fileIn);
 		XLS xlsIn = new XLS(fileIn);
-		addEntitiesFromRowList(xlsIn.getRowsOfSheet(0), classification, false, null, colClass, colUri, Integer.MIN_VALUE);
+		addEntitiesFromRowList(xlsIn.getRowsOfSheet(0), classification, false, null, colClass, colUri,
+				Integer.MIN_VALUE);
 	}
 
 	/**
 	 *
-	 * Load a list of entities from a list rows (a row is an array of strings). Each row (i.e. string array) is associated with an entity of the dataset and stores: the URI of the entity, the class of the entity, the confidence of the classification, and the features of the entity. The method assumes
-	 * that the first row of the list contains the headings of the columns. It also assumes that columns after colConfidence (or after colClass in the case that the confidence is not provided) until the second to last column stores numeric features.
+	 * Load a list of entities from a list rows (a row is an array of strings). Each
+	 * row (i.e. string array) is associated with an entity of the dataset and
+	 * stores: the URI of the entity, the class of the entity, the confidence of the
+	 * classification, and the features of the entity. The method assumes that the
+	 * first row of the list contains the headings of the columns. It also assumes
+	 * that columns after colConfidence (or after colClass in the case that the
+	 * confidence is not provided) until the second to last column stores numeric
+	 * features.
 	 * 
-	 * @param rows
-	 *            A list of arrays of strings storing the entities
-	 * @param sameKlass
-	 *            true if entities belong to the same class, false otherwise
-	 * @param klass
-	 *            if sameKlass is true, it represents the class of the entities
-	 * @param colClass
-	 *            if sameKlass is false, it contains the column that specifies the class of the entity
-	 * @param colUri
-	 *            the column specifying the IRI of the entity
-	 * @param colConfidence
-	 *            the column specifying the confidence of classification
+	 * @param rows          A list of arrays of strings storing the entities
+	 * @param sameKlass     true if entities belong to the same class, false
+	 *                      otherwise
+	 * @param klass         if sameKlass is true, it represents the class of the
+	 *                      entities
+	 * @param colClass      if sameKlass is false, it contains the column that
+	 *                      specifies the class of the entity
+	 * @param colUri        the column specifying the IRI of the entity
+	 * @param colConfidence the column specifying the confidence of classification
 	 * @throws Exception
 	 */
-	private void addEntitiesFromRowList(List<String[]> rows, Classification classification, boolean sameKlass, Klass klass, int colClass, int colUri, int colConfidence) throws Exception {
+	private void addEntitiesFromRowList(List<String[]> rows, Classification classification, boolean sameKlass,
+			Klass klass, int colClass, int colUri, int colConfidence) throws Exception {
 		String[] firstRow = rows.get(0);
 
 		logger.info("\nClassification: {}\ncolClass: {}\ncolURI: {}", classification.getName(), colClass, colUri);
@@ -101,7 +109,8 @@ public class Dataset {
 			Klass c = klass;
 			if (!sameKlass) {
 				// It allows to change the name of the loaded classes by setting mapClassName.
-				String klassNameNormalised = mapClassName.containsKey(row[colClass]) ? mapClassName.get(row[colClass]) : row[colClass];
+				String klassNameNormalised = mapClassName.containsKey(row[colClass]) ? mapClassName.get(row[colClass])
+						: row[colClass];
 				c = classification.getClass(klassNameNormalised);
 				if (c == null) {
 					throw new Exception("Could not find class " + klassNameNormalised + " for " + row[colUri]);
@@ -194,7 +203,8 @@ public class Dataset {
 		while (values.hasMoreElements()) {
 			klassesInTheClassification.add(new Klass((String) values.nextElement()));
 		}
-		Classification classification = new Classification(instances.relationName(), klassesInTheClassification, instances.relationName());
+		Classification classification = new Classification(instances.relationName(), klassesInTheClassification,
+				instances.relationName());
 
 		ArrayList<Attribute> attributes = WekaUtils.getAttributes(instances);
 		ListIterator<Instance> li = instances.listIterator();
@@ -211,6 +221,5 @@ public class Dataset {
 		}
 
 	}
-
 
 }

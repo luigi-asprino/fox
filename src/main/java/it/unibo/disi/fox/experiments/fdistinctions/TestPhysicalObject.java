@@ -29,7 +29,7 @@ public class TestPhysicalObject {
 	public static final String TOKEN_PREFIX_ATTRIBUTE = "_t_";
 	public static final String __isDetectedBySENECA = "__isDetectedBySENECA";
 	public static final String __isDetectedByORA = "__isDetectedByORA";
-	private static final String FILE_HEADER = "Entity URI\tClass\tConfidence\tSENECA\tTìpalo\tProperties\tAbstract\t";
+	private static final String FILE_HEADER = "Entity_URI\tClass\tConfidence\tSENECA\tTipalo\tNumber_of_URI_tokens\tNUMBER_OF_TOKENS_FOUND_IN_ABSTRACT\tNUMBER_URI_CAPITAL_TOKENS\tProperties\tAbstract\n";
 	private static final int CHECKPOINT = 10000;
 	private static Logger logger = LoggerFactory.getLogger(TestClassInstance.class);
 
@@ -80,8 +80,10 @@ public class TestPhysicalObject {
 			int line_number = 0;
 			try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
 
-				SENECA seneca = SENECA.getInstance(config.getString("SENECA_classes"), config.getString("SENECA_PhysicalObjects"));
-				Tipalo tipalo = Tipalo.getInstance(config.getString("Tipalo_classes"), config.getString("Tipalo_PhysicalObjects"));
+				SENECA seneca = SENECA.getInstance(config.getString("SENECA_classes"),
+						config.getString("SENECA_PhysicalObjects"));
+				Tipalo tipalo = Tipalo.getInstance(config.getString("Tipalo_classes"),
+						config.getString("Tipalo_PhysicalObjects"));
 
 				ArrayList<Attribute> atts = new ArrayList<>();
 				for (int i = 0; i < instances.numAttributes(); i++) {
@@ -97,6 +99,11 @@ public class TestPhysicalObject {
 					String[] array = line.split("\t");
 
 					String uriEntity = array[0];
+
+					if (!uriEntity.startsWith("http://dbpedia.org/resource")) {
+						throw new RuntimeException("Format error");
+					}
+
 					JSONObject propriet = new JSONObject(array[1]);
 
 					logger.trace("mappa di proprieta");
@@ -161,8 +168,21 @@ public class TestPhysicalObject {
 					// associare il double all'etichetta
 					String nomeClasse = instances.classAttribute().value((int) classe);
 
+					String[] uriToken = Utils.getUriTokens(uriEntity);
+
+					// getNUMBER URI TOKENS
+					int n1 = Utils.getNumberOfURITokens(uriToken);
+
+					// getNUMBER_OF_TOKENS_FOUND_IN_ABSTRACT
+					int n2 = Utils.getNumberOfURITokensInAbstract(uriToken, tokens);
+
+					// getNUMBER_URI_CAPITAL_TOKENS
+					int n3 = Utils.getNumberOfURITokensStartingWithCapitalCharacters(uriToken);
+
 					// scrittura su file
-					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + seneca_output + "\t" + tipalo_output + "\t" + array[1] + "\t" + _abstaract + "\n");
+					printWriter.print(uriEntity + "\t" + nomeClasse + "\t" + confindence + "\t" + seneca_output + "\t"
+							+ tipalo_output + "\t" + n1 + "\t" + n2 + "\t" + n3 + "\t" + array[1] + "\t" + _abstaract
+							+ "\n");
 
 					printWriterNoFeature.print(uriEntity + "\t" + nomeClasse + "\n");
 
