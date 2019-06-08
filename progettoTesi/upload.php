@@ -489,6 +489,146 @@ if (isset($_POST['action']) and $_POST['action'] == 'DOWNLOAD USERS FEEDBACK') {
    }
 }
 
+if (isset($_POST['action']) and $_POST['action'] == 'DOWNLOAD USERS ENTITY') {
+   include $_SERVER['DOCUMENT_ROOT'] . '/progettoTesi/db.php';
+
+   //ottengo dal db tutte le entità inserite dagli utenti
+   $origine = "user";
+   $query = "SELECT * FROM entita WHERE entita.Origine = ?";
+   $stmt = $pdo->prepare($query);
+   $stmt->bindParam(1, $origine);
+   $stmt->execute();
+   $resp = $stmt->fetchAll();
+   $stmt->closeCursor();
+
+   foreach ($resp as $row) {
+      $listaUserEntita[] = array('entityURI' => $row['NomeEntita'], 'abstract' => $row['Descrizione']);
+   }
+
+   foreach ($listaUserEntita as $row) {
+      //estraggo le feature per le entità inserite dagli utenti
+      $query = "SELECT * FROM feature_value WHERE NomeEntita = ?";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(1, $row['entityURI']);
+      $stmt->execute();
+      $resp = $stmt->fetchAll();
+      $stmt->closeCursor();
+
+      foreach ($resp as $row2) {
+         $usersFeature[] = [$row2['NomeFeature'] => $row2['FeatureValue']];
+      }
+      $listaUsersFeature[] = array('entityURI' => $row['entityURI'], 'features' => $usersFeature);
+      $usersFeature = [];
+   }
+
+   //riordino le features mettendo insieme i valori per la stessa feature
+   $array = [];
+   for ($i = 0; $i < sizeof($listaUsersFeature); $i++) {
+      $key = $listaUsersFeature[$i]['features'];
+      for ($j = 0; $j < sizeof($key); $j++) {
+         foreach ($key[$j] as $key2 => $row) {
+            if (empty($array)) {
+               $array[$key2] = $row;
+            } else {
+               //controllo se la feature è già presente nell'array in cui inserisco le feature
+               $trovato = "false";
+               foreach ($array as $nomeF => $riga) {
+                  if ($key2 == $nomeF) {
+                     $trovato = "true";
+                  }
+               }
+               if ($trovato == "false") {
+                  $array[$key2] = $row;
+               } else {
+                  $vFeature = [];
+                  if (is_array($array[$key2])) {
+                     foreach ($array[$key2] as $row2) {
+                        //echo $row2;
+                        array_push($vFeature, $row2);
+                     }
+                     array_push($vFeature, $row);
+                     $array[$key2] = $vFeature;
+                  } else {
+                     array_push($vFeature, $array[$key2]);
+                     array_push($vFeature, $row);
+                     $array[$key2] = $vFeature;
+                  }
+               }
+            }
+         }
+      }
+      $listaUsersFeature[$i]['features'] = $array;
+      $array = [];
+   }
+
+   //inserisco le feature riordinate nell'array delle entità
+   for ($i = 0; $i < sizeof($listaUserEntita); $i++) {
+      foreach ($listaUserEntita[$i] as $key => &$row) {
+         if ($key == "entityURI") {
+            for ($j = 0; $j < sizeof($listaUsersFeature); $j++) {
+               foreach ($listaUsersFeature[$j] as $key2 => $row2) {
+                  if ($key2 == "entityURI" and ( $row == $row2)) {
+                     $listaUserEntita[$i]['features'] = $listaUsersFeature[$j]['features'];
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   for ($i = 0; $i < sizeof($listaUserEntita); $i++) {
+      //richiedo al db le annotazioni delle entità inserite dagli utenti
+      $query = "SELECT * FROM annotazione_macchina WHERE NomeEntita = ?";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(1, $listaUserEntita[$i]['entityURI']);
+      $stmt->execute();
+      $resp = $stmt->fetchAll();
+      $stmt->closeCursor();
+
+      foreach ($resp as $row2) {
+         $listaAnnotazioni[] = array('classification_method' => $row2['Metodo'], 'classification_name' => $row2['NomeClassificazione'], 'confidence' => $row2['Confidence'], 'label' => $row2['ValoreClassificazione']);
+      }
+
+      //richiedo al db il feedback dato dall'utente nel momento della classificazione
+      $query = "SELECT * FROM annotazione_utente WHERE NomeEntita = ? AND Origine = ?";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(1, $listaUserEntita[$i]['entityURI']);
+      $origineFeed = "entita_inserita";
+      $stmt->bindParam(2, $origineFeed);
+      $stmt->execute();
+      $resp = $stmt->fetchAll();
+      $stmt->closeCursor();
+
+      foreach ($resp as $row3) {
+         $listaFeedback[] = array('classification_name' => $row3['NomeClassificazione'], 'label' => $row3['ValoreClassificazione'], 'user_valutation' => $row3['Valutazione']);
+      }
+   }
+
+
+   for ($i = 0; $i < sizeof($listaUserEntita); $i++) {
+      $stampaEntitaUtenti[] = array('entityURI' => $listaUserEntita[$i]['entityURI'], 'abstract' => $listaUserEntita[$i]['abstract'], 'features' => $listaUserEntita[$i]['features'], 'annotations' => $listaAnnotazioni[$i], 'feedbacks' => $listaFeedback[$i]);
+   }
+
+   //scrivo il file json con le entità e creo il download
+   $fp = fopen('users_entity.json', 'w');
+   $print = json_encode($stampaEntitaUtenti, JSON_PRETTY_PRINT);
+   fwrite($fp, $print);
+   fclose($fp);
+
+   $file = "users_entity.json";
+   // Quick check to verify that the file exists
+   if (!file_exists($file)) {
+      die("File not found");
+   } else {
+      // Force the download
+      header('Content-Disposition: attachment; filename=""' . basename($file) . '""');
+      header("Content-Length: " . filesize($file));
+      header("Content-Type: application/json;");
+      readFile($file);
+      exit();
+   }
+}
+
 function redirect($url) {
    if (!headers_sent()) {
       header('Location: ' . $url);

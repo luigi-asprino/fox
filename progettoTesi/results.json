@@ -1,9 +1,15 @@
 {
-    "entityURI": "aaa",
-    "abstract": "aaa",
+    "entityURI": "entitaProva",
+    "abstract": "prova definitiva",
     "features": {
-        "aaa": [
-            "aaa"
+        "Nome": [
+            "Nome1",
+            "Nome2",
+            "Nome3"
+        ],
+        "Cognome": [
+            "Cognome1",
+            "Cognome2"
         ]
     }
 }

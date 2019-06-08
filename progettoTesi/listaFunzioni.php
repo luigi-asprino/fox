@@ -109,6 +109,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA FEED') {
    $data = date("Y/m/d", $currentTimestamp);
    $entita = $_POST['nomeEntita'];
    $numEstratto = $_POST['numEstratto'];
+   $origine = "random";
    $counter = 0;
    //apro un ciclo in cui raccolgo le valutazioni per ogni classificazione esistente e faccio un salvataggio nel db 
    //per ogni classificazione
@@ -119,7 +120,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA FEED') {
 
       //echo $data, $nomeAutore, $entita, $nomeClassificazione, $valoreClassificazione, $valutazione;
 
-      $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione)VALUES(?,?,?,?,?,?)";
+      $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione, Origine)VALUES(?,?,?,?,?,?, ?)";
       $stmt = $pdo->prepare($query);
       $stmt->bindParam(1, $data);
       $stmt->bindParam(2, $nomeAutore);
@@ -127,6 +128,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA FEED') {
       $stmt->bindParam(4, $nomeClassificazione);
       $stmt->bindParam(5, $valoreClassificazione);
       $stmt->bindParam(6, $valutazione);
+      $stmt->bindParam(7, $origine);
       if ($stmt->execute()) {
          $stmt->closeCursor();
 
@@ -168,7 +170,8 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
             $listaFeatureInserite[$nomeFeatureInserita] = [$valFeatureInserita];
          } else {
             $vFeature = [];
-            foreach ($row as $row2) {
+            foreach ($listaFeatureInserite[$nomeFeatureInserita] as $row2) {
+               //echo $row2;
                array_push($vFeature, $row2);
             }
             array_push($vFeature, $valFeatureInserita);
@@ -187,6 +190,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
    //print_r($print);
    //fwrite($fp, $print);
    //fclose($fp);
+   
    //faccio una chiamata al db per ricevere gli url di ogni server per le classificazioni
    $query = "SELECT * FROM classificazione";
    $stmt = $pdo->prepare($query);
@@ -244,6 +248,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'INVIA ENTITÀ') {
                            }
                            if (strtolower($key3) == "confidence") {
                               $json_confidence = $row3;
+                              echo $json_confidence;
                            }
                            if (strtolower($key3) == "label") {
                               $json_risultatoClassificazione = $row3;
@@ -278,6 +283,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
    $uDescrizione = $_POST['json_descrizione'];
    $uFeatures = unserialize($_POST['json_features']);
    $uRisultatiClassificazioni = unserialize($_POST['json_risultatiClassificazioni']);
+   $origineFeed = "entita_inserita";
    /*
      $uMetodo = $_POST['json_metodo'];
      $uNomeClassificazione = $_POST['json_nomeClassificazione'];
@@ -325,6 +331,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
       $counter = 0;
       foreach ($uRisultatiClassificazioni as $row) {
          $risposta_utente = $_POST['rispostaRisultato' . $counter];
+         echo $row['confidence'];
          //salvo il feedback espresso dall'utente e dal server di classificazione
          $query = "INSERT INTO annotazione_macchina(Data, Metodo, NomeEntita, NomeClassificazione, ValoreClassificazione,
                    Confidence) VALUES(?, ?, ?, ?, ?, ?)";
@@ -338,7 +345,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
          $stmt->execute();
          $stmt->closeCursor();
 
-         $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione) VALUES(?, ?, ?, ?, ?, ?)";
+         $query = "INSERT INTO annotazione_utente(Data, NomeAutore, NomeEntita, NomeClassificazione, ValoreClassificazione, Valutazione, Origine) VALUES(?, ?, ?, ?, ?, ?, ?)";
          $stmt = $pdo->prepare($query);
          $stmt->bindParam(1, $data);
          $stmt->bindParam(2, $_SESSION['username']);
@@ -346,6 +353,7 @@ if (isset($_POST['action']) and $_POST['action'] == 'Invia Feed') {
          $stmt->bindParam(4, $row['classificazione']);
          $stmt->bindParam(5, $row['risultato']);
          $stmt->bindParam(6, $risposta_utente);
+         $stmt->bindParam(7, $origineFeed);
          $stmt->execute();
          $stmt->closeCursor();
       }

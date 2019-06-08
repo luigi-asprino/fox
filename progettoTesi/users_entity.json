@@ -1,0 +1,47 @@
+[
+    {
+        "entityURI": "entitaProva",
+        "abstract": "descrizione prova",
+        "features": {
+            "petalwidth": "1.2",
+            "sepallength": "2.2",
+            "petallength": "3",
+            "sepalwidth": "4.5"
+        },
+        "annotations": {
+            "classification_method": "Support Vector Machine trained on iris",
+            "classification_name": "iris",
+            "confidence": "0.66666666666667",
+            "label": "Iris-setosa"
+        },
+        "feedbacks": {
+            "classification_name": "iris",
+            "label": "Iris-setosa",
+            "user_valutation": "True"
+        }
+    },
+    {
+        "entityURI": "entitaProva2",
+        "abstract": "descrizione prova2",
+        "features": {
+            "sepallength": [
+                "2.2",
+                "2.5"
+            ],
+            "petalwidth": "4.2",
+            "petallength": "5.4",
+            "sepalwidth": "5.6"
+        },
+        "annotations": {
+            "classification_method": "Support Vector Machine trained on iris",
+            "classification_name": "iris",
+            "confidence": "0.66666666666667",
+            "label": "Iris-virginica"
+        },
+        "feedbacks": {
+            "classification_name": "iris",
+            "label": "Iris-virginica",
+            "user_valutation": "True"
+        }
+    }
+]
