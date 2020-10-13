@@ -17,7 +17,7 @@
 		<swagger.version>1.5.10</swagger.version>
 		<weka.version>3.8.1</weka.version>
 		<lgu.commons.version>0.0.2</lgu.commons.version>
-		<junit.version>3.8.1</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<build>
